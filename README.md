@@ -11,3 +11,7 @@
 ### Images Optimization and Storybook
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/2)
+
+### Prettier
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/3)
