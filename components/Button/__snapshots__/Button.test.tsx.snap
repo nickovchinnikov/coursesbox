@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button test cases Render check 1`] = `
+<DocumentFragment>
+  <button
+    class="css-o0uw0a"
+    color="primary"
+  >
+    Button
+  </button>
+</DocumentFragment>
+`;
