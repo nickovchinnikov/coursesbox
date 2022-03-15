@@ -21,3 +21,13 @@
 [Neumorphic Elements Codepen](https://codepen.io/nickovchinnikov/pen/OJOxaPg)
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/4)
+
+## React and Typescript Review
+
+### JSX at Glance
+
+### JSX compilation
+
+### Jest and React Testing Library
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/5)
