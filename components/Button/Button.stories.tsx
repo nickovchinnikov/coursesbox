@@ -36,6 +36,7 @@ export const WarningButton: ComponentStoryObj<typeof Button> = {
     color: "warning",
   },
 };
+
 export const DangerButton: ComponentStoryObj<typeof Button> = {
   ...PrimaryButton,
   args: {

@@ -43,3 +43,7 @@
 ### Storybook addon interactions
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/8)
+
+### Storybook addon a11y
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/9)
