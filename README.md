@@ -39,3 +39,7 @@
 ### Aliases and themes for Jest
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/7)
+
+### Storybook addon interactions
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/8)
