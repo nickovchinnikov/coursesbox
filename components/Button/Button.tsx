@@ -2,6 +2,9 @@ import { MouseEvent } from "react";
 import styled from "@emotion/styled";
 import { css, SerializedStyles } from "@emotion/react";
 
+import { AppTheme } from "@/styles/themes";
+import { boxShadow, transition } from "@/components/styles";
+
 export type Color = "primary" | "secondary" | "danger" | "warning";
 
 export type Props = {
@@ -10,26 +13,22 @@ export type Props = {
   onClick: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const getColors = (color?: Color): SerializedStyles => {
+export const getColors = (theme: AppTheme, color?: Color): SerializedStyles => {
   switch (color) {
-    case "primary":
-      return css`
-        background: #6d5dfc;
-        color: #e4ebf5e6;
-      `;
     case "secondary":
       return css`
-        color: #5e5c64e6;
+        color: ${theme.font.regular};
       `;
+    case "primary":
     case "danger":
       return css`
-        background: #dc3545e6;
-        color: #e4ebf5e6;
+        background: ${theme.components[color]};
+        color: ${theme.font.button};
       `;
     case "warning":
       return css`
-        background: #ffca2ce6;
-        color: #5e5c64e6;
+        background: ${theme.components[color]};
+        color: ${theme.font.warning};
       `;
     default:
       return css``;
@@ -48,15 +47,16 @@ export const Button = styled.button<Props>`
   width: 15rem;
   height: 4rem;
   border-radius: 1rem;
-  transition: all 0.4s ease;
-  ${({ color }) => getColors(color)}
-  box-shadow: 0.5vmin 0.5vmin 1vmin #c8d0e7, -0.5vmin -0.5vmin 1vmin #ffffff;
+  ${({ theme, color }) => getColors(theme, color)};
   &:hover {
     opacity: 0.9;
   }
+  ${transition()}
+  ${({ theme }) =>
+    boxShadow(theme.components.shadow1, theme.components.shadow2)}
   &:active {
-    box-shadow: 0.5vmin 0.5vmin 1vmin #c8d0e7 inset,
-      -0.5vmin -0.5vmin 1vmin #ffffff inset;
+    ${({ theme }) =>
+      boxShadow(theme.components.shadow1, theme.components.shadow2, true)}
   }
 `;
 
