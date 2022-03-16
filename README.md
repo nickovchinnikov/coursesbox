@@ -35,3 +35,7 @@
 ### Aliases, Fonts and Global styles
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/6)
+
+### Aliases and themes for Jest
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/7)
