@@ -31,3 +31,7 @@
 ### Jest and React Testing Library
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/5)
+
+### Aliases, Fonts and Global styles
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/6)
