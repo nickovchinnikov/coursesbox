@@ -47,3 +47,7 @@
 ### Storybook addon a11y
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/9)
+
+### Visual testing and Chromatic
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/10)
