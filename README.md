@@ -22,6 +22,7 @@
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/4)
 
+
 ## React and Typescript Review
 
 ### JSX at Glance
@@ -51,3 +52,10 @@
 ### Visual testing and Chromatic
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/10)
+
+
+## Storybook and Components Library
+
+### Tile component
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/11)

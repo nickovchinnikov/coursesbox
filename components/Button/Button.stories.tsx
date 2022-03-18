@@ -1,4 +1,3 @@
-import React from "react";
 import { ComponentStoryObj, ComponentMeta } from "@storybook/react";
 import { expect } from "@storybook/jest";
 import { screen, userEvent } from "@storybook/testing-library";
