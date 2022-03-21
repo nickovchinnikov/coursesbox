@@ -13,6 +13,7 @@ const Section = styled.section`
 `;
 
 type Props = {
+  /** Header string */
   header: string;
 };
 
