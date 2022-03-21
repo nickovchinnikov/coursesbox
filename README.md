@@ -68,3 +68,7 @@
 ### Refactoring
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/13)
+
+### Checkbox component
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/14)
