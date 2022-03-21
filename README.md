@@ -64,3 +64,7 @@
 ### Icon component
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/12)
+
+### Refactoring
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/13)
