@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checkbox test cases Render check 1`] = `
+<DocumentFragment>
+  <label
+    class="css-1lkaypw"
+  >
+    <input
+      id="prefix-fffffffbb47d08"
+      type="checkbox"
+    />
+    <label
+      class="css-1mnn8lt"
+      for="prefix-fffffffbb47d08"
+    >
+      ✔
+    </label>
+  </label>
+</DocumentFragment>
+`;
