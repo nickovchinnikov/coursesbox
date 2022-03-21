@@ -1,5 +1,6 @@
 # Practical Guide to NextJS. Build eCommerce education app
 
+
 ## Intro
 
 ### Create-next-app with Typescript support
@@ -59,3 +60,7 @@
 ### Tile component
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/11)
+
+### Icon component
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/12)
