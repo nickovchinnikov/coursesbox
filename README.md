@@ -76,3 +76,7 @@
 ### Custom hook useId
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/15)
+
+### Switch component
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/16)
