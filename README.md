@@ -72,3 +72,7 @@
 ### Checkbox component
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/14)
+
+### Custom hook useId
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/15)
