@@ -86,3 +86,7 @@
 [neon glow](https://codepen.io/nickovchinnikov/pen/vYWWxZj)
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/17)
+
+### IconButton component
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/18)
