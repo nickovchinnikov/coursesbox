@@ -80,3 +80,9 @@
 ### Switch component
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/16)
+
+### Logo component
+
+[neon glow](https://codepen.io/nickovchinnikov/pen/vYWWxZj)
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/17)
