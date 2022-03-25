@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Feedback test cases Render check for invalid 1`] = `
+<DocumentFragment>
+  <span
+    class="css-sk8pyf"
+  >
+    Please provide a valid value
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Feedback test cases Render check for valid 1`] = `
+<DocumentFragment>
+  <span
+    class="css-3xrj9w"
+  >
+    Looks good!
+  </span>
+</DocumentFragment>
+`;
