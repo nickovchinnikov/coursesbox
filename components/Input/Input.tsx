@@ -3,19 +3,14 @@ import styled from "@emotion/styled";
 
 import { Icon, AvailableIcons } from "@/components/Icon";
 import { boxShadow } from "@/components/styles";
-import { useId } from "@/components/hooks/useId";
 
-type StyledInputProps = {
-  withIcon: boolean;
-};
-
-const StyledInput = styled.input<StyledInputProps>`
+const StyledInput = styled.input`
   all: unset;
-  width: 20rem;
-  height: 4rem;
+  width: ${({ width }) => width}rem;
+  height: ${({ height }) => height}rem;
   border-radius: 1rem;
   font-size: 1.4rem;
-  padding-left: ${({ withIcon }) => (withIcon ? 2.8 : 1.4)}rem;
+  padding: 0 2.6rem 0 1.4rem;
   color: ${({ theme }) => theme.font.regular};
   ${({ theme }) =>
     boxShadow(theme.components.shadow1, theme.components.shadow2, true)}
@@ -33,44 +28,59 @@ const StyledInput = styled.input<StyledInputProps>`
 `;
 
 const Label = styled.label`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
   color: ${({ theme }) => theme.font.regular};
   font-size: 1rem;
-  padding-left: 1.4rem;
 `;
 
 const StyledIcon = styled(Icon)`
-  display: block;
-  margin-top: -3rem;
-  padding-left: 0.5rem;
+  margin-left: -2.5rem;
   color: ${({ theme }) => theme.font.placeholder};
   opacity: 0.7;
 `;
 
+const InputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const Text = styled.span`
+  padding-left: 1.4rem;
+`;
+
 export type Props = {
-  /** Input label */
-  label: string;
   /** Placeholder  */
   placeholder: string;
   /** onChange handler */
   onChange: ChangeEventHandler<HTMLInputElement>;
+  /** Input label */
+  label?: string;
   /** Icon */
   icon?: AvailableIcons;
   /** Feedback for input */
   feedback?: ReactChild;
+  /** Input height */
+  height?: number;
+  /** Input width */
+  width?: number;
 };
 
 export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> = ({
   label,
+  height = 4,
+  width = 20,
   icon,
   feedback,
   ...props
 }) => (
   <Label>
-    {label}
-    <br />
-    <StyledInput withIcon={Boolean(icon)} {...props} />
-    {icon && <StyledIcon name={icon} />}
-    <br />
-    <Label>{feedback}</Label>
+    {label && <Text>{label}</Text>}
+    <InputWrapper>
+      <StyledInput height={height} width={width} {...props} />
+      {icon && <StyledIcon name={icon} />}
+    </InputWrapper>
+    {feedback && <Text>{feedback}</Text>}
   </Label>
 );
