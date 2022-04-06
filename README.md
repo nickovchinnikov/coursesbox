@@ -98,3 +98,10 @@
 ### Input component refactoring
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/20)
+
+## Pages and Routing
+
+### Create basic layout part 1
+### Create basic layout part 2
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/21)
