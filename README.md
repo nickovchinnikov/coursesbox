@@ -105,3 +105,7 @@
 ### Create basic layout part 2
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/21)
+
+### Theme toggler
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/22)
