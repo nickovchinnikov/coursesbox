@@ -114,3 +114,8 @@
 ### Course component refactoring
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/23)
+
+### Home page
+### Home page part 2
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/24)
