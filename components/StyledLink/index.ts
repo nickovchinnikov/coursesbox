@@ -1,0 +1,1 @@
+export { StyledLink } from "./StyledLink";

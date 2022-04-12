@@ -5,6 +5,7 @@ import styled from "@emotion/styled";
 import { Logo } from "@/components/Logo";
 import { Input } from "@/components/Input";
 import { IconButton } from "@/components/IconButton";
+import { StyledLink } from "@/components/StyledLink";
 
 const Wrapper = styled.div`
   display: grid;
@@ -52,14 +53,6 @@ const StyledLogo = styled(Logo)`
   }
 `;
 
-const LogoLink = styled.a`
-  all: unset;
-  cursor: pointer;
-  &:hover {
-    opacity: 0.9;
-  }
-`;
-
 const MainNav = styled.nav`
   grid-area: nav;
   display: flex;
@@ -102,9 +95,9 @@ type Props = {
 export const Layout: FC<Props> = ({ children, isDark, onThemeToggle }) => (
   <Wrapper>
     <Link href="/" passHref>
-      <LogoLink>
+      <StyledLink>
         <StyledLogo size={3}>C8X</StyledLogo>
-      </LogoLink>
+      </StyledLink>
     </Link>
     <MainNav>
       <Link href="/all">All</Link>

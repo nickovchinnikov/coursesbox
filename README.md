@@ -109,3 +109,8 @@
 ### Theme toggler
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/22)
+
+### Next Image and Course component
+### Course component refactoring
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/23)

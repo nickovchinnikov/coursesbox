@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StyledLink test cases StyledLink render check 1`] = `
+<DocumentFragment>
+  <a
+    class="css-8q5j4o"
+    href="/hands-on-react-js"
+  >
+    Hands-On React. Build advanced React JS Frontend with expert
+  </a>
+</DocumentFragment>
+`;
