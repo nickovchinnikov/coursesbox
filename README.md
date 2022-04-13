@@ -119,3 +119,7 @@
 ### Home page part 2
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/24)
+
+### Custom 404 error page
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/25)
