@@ -1,5 +1,6 @@
 # Practical Guide to NextJS. Build eCommerce education app
 
+[Versel demo link](https://coursesbox-git-deploy-nickovchinnikov.vercel.app/)
 
 ## Intro
 
