@@ -1,5 +1,6 @@
 # Practical Guide to NextJS. Build eCommerce education app
 
+[Versel demo link](https://coursesbox-git-deploy-nickovchinnikov.vercel.app/)
 
 ## Intro
 
@@ -123,3 +124,7 @@
 ### Custom 404 error page
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/25)
+
+### Versel deploy
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/26)
