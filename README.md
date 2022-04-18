@@ -123,3 +123,7 @@
 ### Custom 404 error page
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/25)
+
+### Versel deploy
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/26)
