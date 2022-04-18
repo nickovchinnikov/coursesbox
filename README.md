@@ -128,3 +128,7 @@
 ### Versel deploy
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/26)
+
+### Github Actions and Chromatic
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/27)
