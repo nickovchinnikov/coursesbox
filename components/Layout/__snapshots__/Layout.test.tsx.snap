@@ -6,7 +6,7 @@ exports[`Layout test cases Render check 1`] = `
     class="css-u0jlnf"
   >
     <a
-      class="css-1oh0t5x"
+      class="css-vbvevl"
       href="/"
     >
       <header
@@ -26,14 +26,16 @@ exports[`Layout test cases Render check 1`] = `
       </header>
     </a>
     <nav
-      class="css-kkkasr"
+      class="css-1sstk05"
     >
       <a
+        class="css-19yrd4a"
         href="/all"
       >
         All
       </a>
       <a
+        class="css-19yrd4a"
         href="/news"
       >
         News
