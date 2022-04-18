@@ -132,3 +132,7 @@
 ### Github Actions and Chromatic
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/27)
+
+### CI Test + Lint
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/28)
