@@ -100,7 +100,8 @@
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/20)
 
-## Pages and Routing
+
+## Basic layout and pages
 
 ### Create basic layout part 1
 ### Create basic layout part 2
@@ -136,3 +137,10 @@
 ### CI Test + Lint
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/28)
+
+
+## Strapi review
+
+### Intro and refactoring
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/29)
