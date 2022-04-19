@@ -14,6 +14,11 @@ jobs:
   chromatic-deployment:
     # Operating System
     runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./frontend
+        
     # Job steps
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -30,6 +35,7 @@ jobs:
         uses: chromaui/action@v1
         # Chromatic GitHub Action options
         with:
+          workingDir: frontend
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
             
