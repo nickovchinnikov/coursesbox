@@ -144,3 +144,7 @@
 ### Intro and refactoring
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/29)
+
+### Strapi init
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/30)
