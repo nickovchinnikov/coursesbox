@@ -105,18 +105,11 @@ export type Props = {
 } & LabelProps;
 
 export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> =
-  forwardRef((props, ref) => {
-    const {
-      label,
-      height = 7,
-      width = 20,
-      icon,
-      feedback,
-      className,
-      ...rest
-    } = props;
-
-    return (
+  forwardRef(
+    (
+      { label, height = 7, width = 20, icon, feedback, className, ...rest },
+      ref
+    ) => (
       <Wrapper
         height={height}
         width={width}
@@ -130,7 +123,7 @@ export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> =
         </InputWrapper>
         <Feedback>{feedback}</Feedback>
       </Wrapper>
-    );
-  });
+    )
+  );
 
 Input.displayName = "Input";
