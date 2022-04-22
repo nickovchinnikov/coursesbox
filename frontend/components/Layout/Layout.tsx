@@ -104,8 +104,8 @@ export const Layout: FC<Props> = ({ children, isDark, onThemeToggle }) => (
       <Link href="/all" passHref>
         <StyledLink>All</StyledLink>
       </Link>
-      <Link href="/news" passHref>
-        <StyledLink>News</StyledLink>
+      <Link href="/signin" passHref>
+        <IconButton name="Login" size={1} />
       </Link>
       <IconButton
         name={isDark ? "Moon" : "Sun"}

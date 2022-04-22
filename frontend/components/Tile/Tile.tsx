@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactChild } from "react";
 import styled from "@emotion/styled";
 
 import { boxShadow, borderRadius } from "@/components/styles";
@@ -14,7 +14,7 @@ const Section = styled.section`
 
 type Props = {
   /** Header string */
-  header: ReactNode;
+  header: ReactChild;
 };
 
 export const Tile: FC<Props> = ({ header, children, ...rest }) => (
