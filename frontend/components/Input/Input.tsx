@@ -37,6 +37,10 @@ const Wrapper = styled.label<LabelProps>`
           grid-template-areas: "input";
           grid-template-rows: 1fr;
         `}
+  & > span {
+    ${({ showLabels }) => !showLabels && "display: none;"}
+  }
+
   width: ${({ width }) => width}rem;
   height: ${({ height }) => height}rem;
   color: ${({ theme }) => theme.font.regular};

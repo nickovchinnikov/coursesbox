@@ -74,6 +74,7 @@ const SearchInput = styled(Input)`
 
 const Content = styled.main`
   grid-area: content;
+  margin-top: 1rem;
 `;
 
 const Footer = styled.footer`
