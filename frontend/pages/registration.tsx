@@ -16,7 +16,7 @@ const StyledInput = styled(Input)`
   margin-bottom: 1rem;
 `;
 
-const Signup: NextPage = () => {
+const Registration: NextPage = () => {
   const {
     register,
     handleSubmit,
@@ -29,16 +29,7 @@ const Signup: NextPage = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Wrapper
-        header={
-          <>
-            <Link href="/signin" passHref>
-              <StyledLink underline>Sign In</StyledLink>
-            </Link>{" "}
-            / Sign Up
-          </>
-        }
-      >
+      <Wrapper header="Create an account">
         <StyledInput
           label="username"
           minLength={6}
@@ -67,9 +58,14 @@ const Signup: NextPage = () => {
           {...register("password", { required: true, minLength: 6 })}
         />
         <Button type="submit">Sign Up</Button>
+        <h3>
+          <Link href="/login" passHref>
+            <StyledLink underline>Login</StyledLink>
+          </Link>
+        </h3>
       </Wrapper>
     </form>
   );
 };
 
-export default Signup;
+export default Registration;
