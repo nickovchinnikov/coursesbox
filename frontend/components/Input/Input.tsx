@@ -7,6 +7,7 @@ import {
   ForwardedRef,
 } from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
 import { Icon, AvailableIcons } from "@/components/Icon";
 import { boxShadow } from "@/components/styles";
@@ -16,17 +17,26 @@ type LabelProps = {
   height?: number;
   /** Input width */
   width?: number;
+  /** Show label and feedback */
+  showLabels?: boolean;
 };
 
 const Wrapper = styled.label<LabelProps>`
   display: grid;
   gap: 0.1rem;
-  grid-template-areas:
-    "label"
-    "input"
-    "feedback";
-  grid-template-rows: 1fr 3fr 1fr;
-
+  ${({ showLabels }) =>
+    showLabels
+      ? css`
+          grid-template-areas:
+            "label"
+            "input"
+            "feedback";
+          grid-template-rows: 1fr 3fr 1fr;
+        `
+      : css`
+          grid-template-areas: "input";
+          grid-template-rows: 1fr;
+        `}
   width: ${({ width }) => width}rem;
   height: ${({ height }) => height}rem;
   color: ${({ theme }) => theme.font.regular};
@@ -107,7 +117,12 @@ export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> =
     } = props;
 
     return (
-      <Wrapper height={height} width={width} className={className}>
+      <Wrapper
+        height={height}
+        width={width}
+        className={className}
+        showLabels={Boolean(label) || Boolean(feedback)}
+      >
         <Label>{label}</Label>
         <InputWrapper>
           <StyledInput {...rest} ref={ref as ForwardedRef<HTMLInputElement>} />
