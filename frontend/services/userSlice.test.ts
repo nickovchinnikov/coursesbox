@@ -90,13 +90,12 @@ describe("User slice check", () => {
       });
     });
     it("should set the request state to rejected", () => {
+      const error = { name: "500", message: "Server error" };
       expect(
-        reducer(
-          initialState,
-          login.rejected(new Error("Server error"), requestId, loginData)
-        )
+        reducer(initialState, login.rejected(error, requestId, loginData))
       ).toEqual({
         ...initialState,
+        error,
         requestState: "rejected",
       });
     });
@@ -133,6 +132,9 @@ describe("User slice check", () => {
           jwt: "",
           username: "",
           email: "",
+          error: {
+            message: "Rejected",
+          },
           requestState: "rejected",
         },
       });

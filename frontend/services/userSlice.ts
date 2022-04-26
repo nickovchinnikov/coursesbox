@@ -1,4 +1,9 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createSlice,
+  PayloadAction,
+  SerializedError,
+} from "@reduxjs/toolkit";
 
 export type LoginData = {
   identifier?: string;
@@ -12,6 +17,7 @@ export type UserState = {
   username: string;
   email: string;
   requestState?: RequestState;
+  error?: SerializedError;
 };
 
 const initialState: UserState = {
@@ -47,7 +53,9 @@ export const userSlice = createSlice({
       state.username = payload.user.username;
       state.email = payload.user.email;
     });
-    builder.addCase(login.rejected, (state) => {
+    builder.addCase(login.rejected, (state, { payload, error }) => {
+      const payloadError = (payload as { error: SerializedError })?.error;
+      state.error = payloadError ? payloadError : error;
       state.requestState = "rejected";
     });
   },
@@ -83,11 +91,11 @@ export const login = createAsyncThunk<LoginPayload, LoginData>(
       return rejectWithValue(data);
     }
 
-    const result = jwt ? { jwt, user: data.user } : data;
+    const result = jwt ? { jwt, user: data } : data;
 
     localStorage.setItem("jwt", result.jwt);
-    localStorage.setItem("username", result.user.username);
-    localStorage.setItem("email", result.user.email);
+    localStorage.setItem("username", result?.user?.username);
+    localStorage.setItem("email", result?.user?.email);
 
     return result;
   }
@@ -96,10 +104,10 @@ export const login = createAsyncThunk<LoginPayload, LoginData>(
 export const logout = createAsyncThunk(
   "user/logout",
   async (data, { dispatch }) => {
+    dispatch(actions.clear());
+
     localStorage.removeItem("jwt");
     localStorage.removeItem("username");
     localStorage.removeItem("email");
-
-    dispatch(actions.clear());
   }
 );
