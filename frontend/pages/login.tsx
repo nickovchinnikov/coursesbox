@@ -2,15 +2,18 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
+import { SerializedError } from "@reduxjs/toolkit";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
+
+import { RootState, AppDispatch } from "@/store";
+import { login, logout } from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Input, Feedback } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { StyledLink } from "@/components/StyledLink";
-
-import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 const Wrapper = styled(CenteredTile)`
   height: 83vh;
@@ -37,30 +40,23 @@ const Login: NextPage = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const [jwt] = useLocalStorage("jwt");
-  if (jwt) {
+  const jwt = useSelector<RootState, string>(({ user }) => user.jwt);
+  const serverError = useSelector<RootState, SerializedError | undefined>(
+    ({ user }) => user.error
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  if (Boolean(jwt) && serverError) {
+    dispatch(logout());
+  }
+
+  if (Boolean(jwt) && !serverError) {
     router.push("/user");
   }
 
   const onSubmit = async (data: LoginForm) => {
-    const response = await fetch(`${api_url}/auth/local`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    const res = await response.json();
-
-    if (res.error) {
-      setError(res.error.message);
-    } else {
-      localStorage.setItem("jwt", res.jwt);
-      localStorage.setItem("username", res.user.username);
-      localStorage.setItem("email", res.user.email);
-      router.push("/user");
-    }
+    await dispatch(login(data));
   };
 
   useEffect(() => {
@@ -73,6 +69,7 @@ const Login: NextPage = () => {
       <Wrapper header="Login">
         <h3>
           <Feedback>{error} &nbsp;</Feedback>
+          <Feedback>{serverError?.message}</Feedback>
         </h3>
         <StyledInput
           label="Identifier"
