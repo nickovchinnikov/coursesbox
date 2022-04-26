@@ -47,10 +47,6 @@ const Login: NextPage = () => {
 
   const dispatch = useDispatch<AppDispatch>();
 
-  if (Boolean(jwt) && serverError) {
-    dispatch(logout());
-  }
-
   if (Boolean(jwt) && !serverError) {
     router.push("/user");
   }

@@ -52,6 +52,7 @@ export const userSlice = createSlice({
       state.jwt = payload.jwt;
       state.username = payload.user.username;
       state.email = payload.user.email;
+      state.error = undefined;
     });
     builder.addCase(login.rejected, (state, { payload, error }) => {
       const payloadError = (payload as { error: SerializedError })?.error;
@@ -62,6 +63,12 @@ export const userSlice = createSlice({
 });
 
 export const { actions, reducer } = userSlice;
+
+const clearUserInfoFromLocalStorage = () => {
+  localStorage.removeItem("jwt");
+  localStorage.removeItem("username");
+  localStorage.removeItem("email");
+};
 
 type LoginPayload = { jwt: string; user: { username: string; email: string } };
 
@@ -88,6 +95,7 @@ export const login = createAsyncThunk<LoginPayload, LoginData>(
     const data = await response.json();
 
     if (response.status < 200 || response.status >= 300) {
+      clearUserInfoFromLocalStorage();
       return rejectWithValue(data);
     }
 
@@ -105,9 +113,6 @@ export const logout = createAsyncThunk(
   "user/logout",
   async (data, { dispatch }) => {
     dispatch(actions.clear());
-
-    localStorage.removeItem("jwt");
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
+    clearUserInfoFromLocalStorage();
   }
 );

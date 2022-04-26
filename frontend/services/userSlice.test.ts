@@ -68,10 +68,15 @@ describe("User slice check", () => {
         requestState: "pending",
       });
     });
-    it("should set the request state to fulfilled", () => {
+    it("should set the request state to fulfilled and reset any previous errors", () => {
       expect(
         reducer(
-          initialState,
+          {
+            ...initialState,
+            error: {
+              message: "Rejected",
+            },
+          },
           login.fulfilled(
             {
               jwt: updatedState.jwt,
