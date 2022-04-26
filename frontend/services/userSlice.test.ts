@@ -1,6 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
-
 import { storeCreator } from "@/store";
+import { mockUser } from "@/mocks/user";
 
 import { reducer, actions, login, logout } from "./userSlice";
 
@@ -11,14 +10,14 @@ const initialState = {
 };
 
 const updatedState = {
-  jwt: "sometokenhere",
-  username: "username",
-  email: "username@user.com",
+  jwt: mockUser.jwt,
+  username: mockUser.user.username,
+  email: mockUser.user.email,
 };
 
 const loginData = {
-  identifier: updatedState.email,
-  password: "somepassword",
+  identifier: mockUser.user.email,
+  password: mockUser.user.password,
 };
 
 const requestId = "someid";
@@ -100,6 +99,93 @@ describe("User slice check", () => {
         ...initialState,
         requestState: "rejected",
       });
+    });
+  });
+
+  describe("Login/Logout async flow", () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+
+    it("success login flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(login(loginData));
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(mockUser.jwt);
+      expect(localStorage.getItem("username")).toBe(mockUser.user.username);
+      expect(localStorage.getItem("email")).toBe(mockUser.user.email);
+    });
+    it("fail login flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(login({ ...loginData, password: "wrongpass" }));
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          jwt: "",
+          username: "",
+          email: "",
+          requestState: "rejected",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(null);
+      expect(localStorage.getItem("username")).toBe(null);
+      expect(localStorage.getItem("email")).toBe(null);
+    });
+    it("login flow with saved jwt", async () => {
+      expect(localStorage.getItem("jwt")).toBe(null);
+
+      // Set the jwt in localStorage
+      localStorage.setItem("jwt", mockUser.jwt);
+
+      const store = storeCreator();
+      // In this case the jwt is already saved in localStorage
+      await store.dispatch(login({}));
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+    });
+    it("logout flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(login(loginData));
+      const stateForSignedInUser = store.getState();
+
+      expect(stateForSignedInUser).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+
+      await store.dispatch(logout());
+      const stateForSignedOutUser = store.getState();
+
+      expect(stateForSignedOutUser).toEqual({
+        user: {
+          jwt: "",
+          username: "",
+          email: "",
+        },
+      });
+
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(null);
+      expect(localStorage.getItem("username")).toBe(null);
+      expect(localStorage.getItem("email")).toBe(null);
     });
   });
 });

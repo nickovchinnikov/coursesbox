@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type LoginData = {
-  identifier: string;
-  password: string;
+  identifier?: string;
+  password?: string;
 };
 
 type RequestState = "pending" | "fulfilled" | "rejected";
@@ -83,7 +83,7 @@ export const login = createAsyncThunk<LoginPayload, LoginData>(
       return rejectWithValue(data);
     }
 
-    const result = jwt ? { jwt, user: data } : data;
+    const result = jwt ? { jwt, user: data.user } : data;
 
     localStorage.setItem("jwt", result.jwt);
     localStorage.setItem("username", result.user.username);
