@@ -5,6 +5,8 @@ import {
   SerializedError,
 } from "@reduxjs/toolkit";
 
+import { RootState } from "@/store";
+
 export type LoginData = {
   identifier?: string;
   password?: string;
@@ -25,8 +27,6 @@ const initialState: UserState = {
   username: "",
   email: "",
 };
-
-const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 export const userSlice = createSlice({
   name: "user",
@@ -54,13 +54,17 @@ export const userSlice = createSlice({
       state.email = payload.user.email;
       state.error = undefined;
     });
-    builder.addCase(login.rejected, (state, { payload, error }) => {
+    builder.addCase(login.rejected, (state, { payload }) => {
       const payloadError = (payload as { error: SerializedError })?.error;
-      state.error = payloadError ? payloadError : error;
+      state.error = payloadError;
       state.requestState = "rejected";
     });
   },
 });
+
+export const selectUser = (state: RootState) => state.user;
+
+const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 export const { actions, reducer } = userSlice;
 
