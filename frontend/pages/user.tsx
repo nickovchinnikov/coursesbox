@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState, AppDispatch } from "@/store";
@@ -11,7 +11,6 @@ import { CenteredTile } from "@/components/Tile";
 
 const User: NextPage = () => {
   const router = useRouter();
-  const { data, error } = useSWR("/users/me");
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector<RootState, UserState>(selectUser);
@@ -21,15 +20,17 @@ const User: NextPage = () => {
     router.push("/");
   };
 
-  if (user.error || data?.error || error) {
-    dispatch(logout());
-    router.push("/login");
-  }
+  useEffect(() => {
+    if (!user.jwt || Boolean(user.error)) {
+      dispatch(logout());
+      router.push("/login");
+    }
+  }, []);
 
-  return data ? (
+  return user.username && user.email ? (
     <CenteredTile header="Profile">
-      <h3>username: {data?.username}</h3>
-      <h3>email: {data?.email}</h3>
+      <h3>username: {user.username}</h3>
+      <h3>email: {user.email}</h3>
       <Button onClick={logoutHandler}>Logout</Button>
     </CenteredTile>
   ) : null;
