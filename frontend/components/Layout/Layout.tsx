@@ -27,11 +27,11 @@ type Props = {
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 export const Layout: FC<Props> = ({ children, isDark, onThemeToggle }) => {
-  const { jwt } = useSelector<RootState, UserState>(selectUser);
+  const { jwt, username } = useSelector<RootState, UserState>(selectUser);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    if (jwt) {
+    if (jwt && !username) {
       dispatch(login({}));
     }
   }, []);
