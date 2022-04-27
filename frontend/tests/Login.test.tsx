@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import { render, screen, act } from "@/test-utils";
+import { render, screen, act, waitFor } from "@/test-utils";
 import userEvent from "@testing-library/user-event";
 
 import Login from "@/pages/login";
@@ -71,10 +71,7 @@ describe("Login page", () => {
       userEvent.click(submitButton);
     });
 
-    // Wait until the request is done
-    expect(await screen.findByText("fulfilled")).not.toBeVisible();
-
     // Check if the user is redirected to the user page
-    expect(push).toHaveBeenCalledWith("/user");
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/user"));
   });
 });

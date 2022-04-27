@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
-import { SerializedError } from "@reduxjs/toolkit";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
@@ -38,11 +37,9 @@ const Login: NextPage = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const {
-    jwt,
-    error: serverError,
-    requestState,
-  } = useSelector<RootState, UserState>((state) => selectUser(state));
+  const { jwt, error: serverError } = useSelector<RootState, UserState>(
+    (state) => selectUser(state)
+  );
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -65,12 +62,6 @@ const Login: NextPage = () => {
         <h3>
           <Feedback>{error} &nbsp;</Feedback>
           <Feedback>{serverError?.message}</Feedback>
-          <Feedback
-            data-testid="hidden-request-state"
-            style={{ visibility: "hidden" }}
-          >
-            {requestState}
-          </Feedback>
         </h3>
         <StyledInput
           label="Identifier"
