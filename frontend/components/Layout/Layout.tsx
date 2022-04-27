@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { SWRConfig } from "swr";
 
 import { RootState, AppDispatch } from "@/store";
-import { login } from "@/services/userSlice";
+import { login, selectUser, UserState } from "@/services/userSlice";
 
 import { IconButton } from "@/components/IconButton";
 import { StyledLink } from "@/components/StyledLink";
@@ -27,7 +27,7 @@ type Props = {
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 export const Layout: FC<Props> = ({ children, isDark, onThemeToggle }) => {
-  const jwt = useSelector<RootState, string>(({ user }) => user.jwt);
+  const { jwt } = useSelector<RootState, UserState>(selectUser);
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {

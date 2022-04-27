@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootState, AppDispatch } from "@/store";
-import { logout, UserState } from "@/services/userSlice";
+import { logout, UserState, selectUser } from "@/services/userSlice";
 
 import { Button } from "@/components/Button";
 import { CenteredTile } from "@/components/Tile";
@@ -14,15 +14,12 @@ const User: NextPage = () => {
   const { data, error } = useSWR("/users/me");
 
   const dispatch = useDispatch<AppDispatch>();
-  const user = useSelector<RootState, UserState>(({ user }) => user);
+  const user = useSelector<RootState, UserState>(selectUser);
 
   const logoutHandler = async () => {
     await dispatch(logout());
     router.push("/");
   };
-
-  console.log("data: ", data);
-  console.log("error: ", error);
 
   if (user.error || data?.error || error) {
     dispatch(logout());
