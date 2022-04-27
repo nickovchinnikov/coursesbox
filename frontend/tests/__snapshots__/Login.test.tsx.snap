@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login page Render check 1`] = `
+<div>
+  <form>
+    <div
+      class="css-1oczm9i"
+    >
+      <section
+        class="css-eatc9a"
+      >
+        <h2>
+          Login
+        </h2>
+        <h3>
+          <span
+            class="css-sk8pyf"
+          >
+              
+          </span>
+          <span
+            class="css-sk8pyf"
+          />
+          <span
+            class="css-sk8pyf"
+            data-testid="hidden-request-state"
+            style="visibility: hidden;"
+          />
+        </h3>
+        <label
+          class="css-5h33el"
+          height="7"
+          width="20"
+        >
+          <span
+            class="css-1grri41"
+          >
+            Identifier
+          </span>
+          <div
+            class="css-52ovgc"
+          >
+            <input
+              class="css-1bj11r8"
+              minlength="6"
+              name="identifier"
+              placeholder="username or email"
+            />
+          </div>
+          <span
+            class="css-1reg724"
+          />
+        </label>
+        <label
+          class="css-5h33el"
+          height="7"
+          width="20"
+        >
+          <span
+            class="css-1grri41"
+          >
+            password
+          </span>
+          <div
+            class="css-52ovgc"
+          >
+            <input
+              class="css-1bj11r8"
+              minlength="6"
+              name="password"
+              placeholder="password"
+              type="password"
+            />
+          </div>
+          <span
+            class="css-1reg724"
+          />
+        </label>
+        <button
+          class="css-1rttvxo"
+          color="primary"
+          type="submit"
+        >
+          Sign In
+        </button>
+        <h3>
+          <a
+            class="css-pm0vza"
+            href="/registration"
+          >
+            Create account
+          </a>
+        </h3>
+      </section>
+    </div>
+  </form>
+</div>
+`;

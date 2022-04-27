@@ -6,6 +6,15 @@ import { mockUser } from "./user";
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
+const ValidationError = {
+  error: {
+    status: 400,
+    name: "ValidationError",
+    message: "Invalid identifier or password",
+    details: {},
+  },
+};
+
 export const handlers = [
   rest.post<LoginData>(`${api_url}/auth/local`, (req, res, ctx) => {
     const data = req.body;
@@ -17,15 +26,7 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(mockUser));
     }
 
-    return res(
-      ctx.status(400),
-      ctx.json({
-        status: 400,
-        name: "ValidationError",
-        message: "Invalid identifier or password",
-        details: {},
-      })
-    );
+    return res(ctx.status(400), ctx.json(ValidationError));
   }),
 
   rest.get(`${api_url}/users/me`, (req, res, ctx) => {
@@ -33,14 +34,6 @@ export const handlers = [
       return res(ctx.status(200), ctx.json(mockUser.user));
     }
 
-    return res(
-      ctx.status(400),
-      ctx.json({
-        status: 400,
-        name: "ValidationError",
-        message: "Invalid identifier or password",
-        details: {},
-      })
-    );
+    return res(ctx.status(400), ctx.json(ValidationError));
   }),
 ];

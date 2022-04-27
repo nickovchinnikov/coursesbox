@@ -8,7 +8,7 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 
 import { RootState, AppDispatch } from "@/store";
-import { login, logout } from "@/services/userSlice";
+import { login, selectUser, UserState } from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Input, Feedback } from "@/components/Input";
@@ -28,8 +28,6 @@ type LoginForm = {
   password: string;
 };
 
-const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-
 const Login: NextPage = () => {
   const {
     register,
@@ -40,10 +38,11 @@ const Login: NextPage = () => {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
-  const jwt = useSelector<RootState, string>(({ user }) => user.jwt);
-  const serverError = useSelector<RootState, SerializedError | undefined>(
-    ({ user }) => user.error
-  );
+  const {
+    jwt,
+    error: serverError,
+    requestState,
+  } = useSelector<RootState, UserState>((state) => selectUser(state));
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -66,21 +65,29 @@ const Login: NextPage = () => {
         <h3>
           <Feedback>{error} &nbsp;</Feedback>
           <Feedback>{serverError?.message}</Feedback>
+          <Feedback
+            data-testid="hidden-request-state"
+            style={{ visibility: "hidden" }}
+          >
+            {requestState}
+          </Feedback>
         </h3>
         <StyledInput
           label="Identifier"
           minLength={6}
-          feedback={
-            errors.identifier && <Feedback>Invalid identifier!</Feedback>
-          }
+          feedback={errors.identifier && <Feedback>Min length 6!</Feedback>}
           placeholder="username or email"
-          {...register("identifier", { required: true, pattern: /^\S+$/i })}
+          {...register("identifier", {
+            required: true,
+            minLength: 6,
+            pattern: /^\S+$/i,
+          })}
         />
         <StyledInput
           label="password"
           type="password"
           minLength={6}
-          feedback={errors.password && <Feedback>Invalid password!</Feedback>}
+          feedback={errors.password && <Feedback>Min length 8!</Feedback>}
           placeholder="password"
           {...register("password", { required: true, minLength: 6 })}
         />
