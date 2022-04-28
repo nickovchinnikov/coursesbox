@@ -1,5 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tile test cases CenteredTile render check 1`] = `
+<DocumentFragment>
+  <div
+    class="css-1hppjzv"
+  >
+    <section
+      class="css-eatc9a"
+    >
+      <h2>
+        Lorem ipsum dolor sit amet
+      </h2>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+    </section>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Tile test cases Tile render check 1`] = `
 <DocumentFragment>
   <section
