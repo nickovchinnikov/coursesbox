@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import { render, screen, act, waitFor } from "@/test-utils";
+import { pageRender as render, screen, act, waitFor } from "@/test-utils";
 import userEvent from "@testing-library/user-event";
 
 import Registration from "@/pages/registration";

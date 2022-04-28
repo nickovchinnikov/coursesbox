@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 
-import { render, screen, waitFor } from "@/test-utils";
+import { pageRender as render, screen, waitFor } from "@/test-utils";
 import { mockUser } from "@/mocks/user";
 import User from "@/pages/user";
 
