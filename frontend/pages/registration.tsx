@@ -1,12 +1,22 @@
-import type { NextPage } from "next";
 import Link from "next/link";
+import type { NextPage } from "next";
 import styled from "@emotion/styled";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
+import { useSelector, useDispatch } from "react-redux";
 
 import { CenteredTile } from "@/components/Tile";
 import { Input, Feedback } from "@/components/Input";
 import { Button } from "@/components/Button";
 import { StyledLink } from "@/components/StyledLink";
+
+import { RootState, AppDispatch } from "@/store";
+import {
+  RegistrationData,
+  UserState,
+  selectUser,
+  registration,
+} from "@/services/userSlice";
 
 const Wrapper = styled(CenteredTile)`
   height: 83vh;
@@ -21,31 +31,51 @@ const Registration: NextPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<RegistrationData>();
+  const router = useRouter();
 
-  const onSubmit = (data: unknown) => {
-    console.log("submit: ", data);
+  const { jwt, error: serverError } = useSelector<RootState, UserState>(
+    (state) => selectUser(state)
+  );
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  if (Boolean(jwt) && !serverError) {
+    router.push("/user");
+  }
+
+  const onSubmit = async (data: RegistrationData) => {
+    await dispatch(registration(data));
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Wrapper header="Create an account">
+        <h3>
+          <Feedback>{serverError?.message} &nbsp;</Feedback>
+        </h3>
         <StyledInput
           label="username"
           minLength={6}
           feedback={
-            errors.username && <Feedback>Only letters and digits!</Feedback>
+            errors.username && (
+              <Feedback>Letters and digits, min 6 symbols!</Feedback>
+            )
           }
           placeholder="username"
           type="username"
-          {...register("username", { required: true, pattern: /^\S+$/i })}
+          {...register("username", {
+            required: true,
+            minLength: 6,
+            pattern: /^[\w\d\s]+$/,
+          })}
         />
         <StyledInput
           label="email"
           feedback={errors.email && <Feedback>Should be valid email!</Feedback>}
           placeholder="email"
           type="email"
-          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
+          {...register("email", { required: true, pattern: /^\S+@\S+$/ })}
         />
         <StyledInput
           label="password"
