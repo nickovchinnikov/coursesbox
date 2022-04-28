@@ -1,6 +1,8 @@
 import {
   createAsyncThunk,
   createSlice,
+  AsyncThunk,
+  PrepareAction,
   PayloadAction,
   SerializedError,
 } from "@reduxjs/toolkit";
@@ -10,6 +12,12 @@ import { RootState } from "@/store";
 export type LoginData = {
   identifier?: string;
   password?: string;
+};
+
+export type RegistrationData = {
+  username: string;
+  email: string;
+  password: string;
 };
 
 type RequestState = "pending" | "fulfilled" | "rejected";
@@ -28,6 +36,12 @@ const initialState: UserState = {
   email: "",
 };
 
+type GenericAsyncThunk = AsyncThunk<unknown, unknown, any>;
+
+type PendingAction = ReturnType<GenericAsyncThunk["pending"]>;
+type RejectedAction = ReturnType<GenericAsyncThunk["rejected"]>;
+type FulfilledAction = ReturnType<GenericAsyncThunk["fulfilled"]>;
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -44,21 +58,37 @@ export const userSlice = createSlice({
   },
   extraReducers: (builder) => {
     /** Login flow */
-    builder.addCase(login.pending, (state) => {
-      state.requestState = "pending";
-    });
-    builder.addCase(login.fulfilled, (state, { payload }) => {
-      state.requestState = "fulfilled";
-      state.jwt = payload.jwt;
-      state.username = payload.user.username;
-      state.email = payload.user.email;
-      state.error = undefined;
-    });
-    builder.addCase(login.rejected, (state, { payload }) => {
-      const payloadError = (payload as { error: SerializedError })?.error;
-      state.error = payloadError;
-      state.requestState = "rejected";
-    });
+    builder
+      .addMatcher<PayloadAction<UserPayload>>(
+        // matcher can be defined inline as a type predicate function
+        (action): action is FulfilledAction =>
+          /\/(login|registration)\/fulfilled$/.test(action.type),
+        (state, { payload }) => {
+          state.requestState = "fulfilled";
+          state.jwt = payload.jwt;
+          state.username = payload.user.username;
+          state.email = payload.user.email;
+          state.error = undefined;
+        }
+      )
+      // pending action
+      .addMatcher(
+        // matcher can be defined inline as a type predicate function
+        (action): action is PendingAction => action.type.endsWith("/pending"),
+        (state) => {
+          state.requestState = "pending";
+        }
+      )
+      // rejection handler
+      .addMatcher(
+        // matcher can be defined inline as a type predicate function
+        (action): action is RejectedAction => action.type.endsWith("/rejected"),
+        (state, { payload }) => {
+          const payloadError = (payload as { error: SerializedError })?.error;
+          state.error = payloadError;
+          state.requestState = "rejected";
+        }
+      );
   },
 });
 
@@ -68,15 +98,21 @@ const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 export const { actions, reducer } = userSlice;
 
+type UserPayload = { jwt: string; user: { username: string; email: string } };
+
 const clearUserInfoFromLocalStorage = () => {
   localStorage.removeItem("jwt");
   localStorage.removeItem("username");
   localStorage.removeItem("email");
 };
 
-type LoginPayload = { jwt: string; user: { username: string; email: string } };
+const setupUserInfoToLocalStorage = (result: UserPayload) => {
+  localStorage.setItem("jwt", result.jwt);
+  localStorage.setItem("username", result?.user?.username);
+  localStorage.setItem("email", result?.user?.email);
+};
 
-export const login = createAsyncThunk<LoginPayload, LoginData>(
+export const login = createAsyncThunk<UserPayload, LoginData>(
   "user/login",
   async (loginData, { rejectWithValue }) => {
     const jwt = localStorage.getItem("jwt");
@@ -105,9 +141,7 @@ export const login = createAsyncThunk<LoginPayload, LoginData>(
 
     const result = jwt ? { jwt, user: data } : data;
 
-    localStorage.setItem("jwt", result.jwt);
-    localStorage.setItem("username", result?.user?.username);
-    localStorage.setItem("email", result?.user?.email);
+    setupUserInfoToLocalStorage(result);
 
     return result;
   }
@@ -118,5 +152,28 @@ export const logout = createAsyncThunk(
   async (data, { dispatch }) => {
     dispatch(actions.clear());
     clearUserInfoFromLocalStorage();
+  }
+);
+
+export const registration = createAsyncThunk<UserPayload, RegistrationData>(
+  "user/registration",
+  async (data, { rejectWithValue }) => {
+    const response = await fetch(`${api_url}/auth/local/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    const result = await response.json();
+
+    if (response.status < 200 || response.status >= 300) {
+      return rejectWithValue(result);
+    }
+
+    setupUserInfoToLocalStorage(result);
+
+    return result;
   }
 );

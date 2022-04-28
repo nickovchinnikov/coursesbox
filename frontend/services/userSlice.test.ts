@@ -1,7 +1,7 @@
 import { storeCreator } from "@/store";
 import { mockUser } from "@/mocks/user";
 
-import { reducer, actions, login, logout } from "./userSlice";
+import { reducer, actions, login, registration, logout } from "./userSlice";
 
 const initialState = {
   jwt: "",
@@ -17,6 +17,12 @@ const updatedState = {
 
 const loginData = {
   identifier: mockUser.user.email,
+  password: mockUser.user.password,
+};
+
+const registrationData = {
+  username: mockUser.user.username,
+  email: mockUser.user.email,
   password: mockUser.user.password,
 };
 
@@ -202,5 +208,48 @@ describe("User slice check", () => {
     });
   });
 
-  describe("Registration state flow", () => {});
+  describe("Registration state flow", () => {
+    it("fail registration flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(
+        registration({ email: "test", username: "test", password: "wrong" })
+      );
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          jwt: "",
+          username: "",
+          email: "",
+          error: {
+            status: 400,
+            name: "ApplicationError",
+            message: "An error occurred during account creation",
+            details: {},
+          },
+          requestState: "rejected",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(null);
+      expect(localStorage.getItem("username")).toBe(null);
+      expect(localStorage.getItem("email")).toBe(null);
+    });
+    it("success registration flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(registration(registrationData));
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(mockUser.jwt);
+      expect(localStorage.getItem("username")).toBe(mockUser.user.username);
+      expect(localStorage.getItem("email")).toBe(mockUser.user.email);
+    });
+  });
 });
