@@ -68,7 +68,6 @@ const Login: NextPage = () => {
           {...register("identifier", {
             required: true,
             minLength: 6,
-            pattern: /^\S+$/i,
           })}
         />
         <StyledInput
