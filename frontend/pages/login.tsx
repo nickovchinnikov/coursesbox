@@ -7,7 +7,7 @@ import styled from "@emotion/styled";
 import { useForm } from "react-hook-form";
 
 import { RootState, AppDispatch } from "@/store";
-import { login, selectUser, UserState } from "@/services/userSlice";
+import { login, LoginData, selectUser, UserState } from "@/services/userSlice";
 
 import { CenteredTile } from "@/components/Tile";
 import { Input, Feedback } from "@/components/Input";
@@ -22,10 +22,7 @@ const StyledInput = styled(Input)`
   margin-bottom: 1rem;
 `;
 
-type LoginForm = {
-  identifier: string;
-  password: string;
-};
+type LoginForm = Required<LoginData>;
 
 const Login: NextPage = () => {
   const {
