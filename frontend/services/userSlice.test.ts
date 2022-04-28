@@ -95,12 +95,15 @@ describe("User slice check", () => {
       });
     });
     it("should set the request state to rejected", () => {
-      const error = { name: "500", message: "Server error" };
+      const payloadError = { error: { name: "500", message: "Server error" } };
       expect(
-        reducer(initialState, login.rejected(error, requestId, loginData))
+        reducer(
+          initialState,
+          login.rejected({} as Error, requestId, loginData, payloadError)
+        )
       ).toEqual({
         ...initialState,
-        error,
+        error: payloadError.error,
         requestState: "rejected",
       });
     });
@@ -138,7 +141,10 @@ describe("User slice check", () => {
           username: "",
           email: "",
           error: {
-            message: "Rejected",
+            status: 400,
+            name: "ValidationError",
+            message: "Invalid identifier or password",
+            details: {},
           },
           requestState: "rejected",
         },
@@ -195,4 +201,6 @@ describe("User slice check", () => {
       expect(localStorage.getItem("email")).toBe(null);
     });
   });
+
+  describe("Registration state flow", () => {});
 });
