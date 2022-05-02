@@ -1,4 +1,11 @@
-import { FC, ChangeEventHandler, InputHTMLAttributes, ReactChild } from "react";
+import {
+  FC,
+  ChangeEventHandler,
+  InputHTMLAttributes,
+  ReactChild,
+  forwardRef,
+  ForwardedRef,
+} from "react";
 import styled from "@emotion/styled";
 
 import { Icon, AvailableIcons } from "@/components/Icon";
@@ -100,27 +107,27 @@ export type Props = {
   feedback?: ReactChild;
 } & WrapperProps;
 
-export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> = ({
-  label,
-  height = 7,
-  width = 20,
-  icon,
-  feedback,
-  className,
-  ...rest
-}) => (
-  <Wrapper
-    isLabelVisible={Boolean(label)}
-    isFeedbackVisible={Boolean(feedback)}
-    height={height}
-    width={width}
-    className={className}
-  >
-    <Label>{label}</Label>
-    <InputWrapper>
-      <StyledInput {...rest} />
-      {icon && <StyledIcon name={icon} />}
-    </InputWrapper>
-    <Feedback>{feedback}</Feedback>
-  </Wrapper>
-);
+export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> =
+  forwardRef(
+    (
+      { label, height = 7, width = 20, icon, feedback, className, ...rest },
+      ref
+    ) => (
+      <Wrapper
+        isLabelVisible={Boolean(label)}
+        isFeedbackVisible={Boolean(feedback)}
+        height={height}
+        width={width}
+        className={className}
+      >
+        <Label>{label}</Label>
+        <InputWrapper>
+          <StyledInput ref={ref as ForwardedRef<HTMLInputElement>} {...rest} />
+          {icon && <StyledIcon name={icon} />}
+        </InputWrapper>
+        <Feedback role="alert">{feedback}</Feedback>
+      </Wrapper>
+    )
+  );
+
+Input.displayName = "Input";

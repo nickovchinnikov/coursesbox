@@ -97,6 +97,7 @@ exports[`Layout test cases Render check 1`] = `
       </div>
       <span
         class="css-1reg724"
+        role="alert"
       />
     </label>
     <main
