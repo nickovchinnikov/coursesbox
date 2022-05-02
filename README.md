@@ -156,3 +156,9 @@
 ### Login page part 2
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/31)
+
+### React hook form and login
+
+### React hook form, validation and tests
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/32)

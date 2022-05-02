@@ -22,6 +22,7 @@ exports[`Input test cases Render check 1`] = `
     </div>
     <span
       class="css-1reg724"
+      role="alert"
     />
   </label>
 </DocumentFragment>
@@ -65,6 +66,7 @@ exports[`Input test cases Render check with icon 1`] = `
     </div>
     <span
       class="css-1reg724"
+      role="alert"
     />
   </label>
 </DocumentFragment>
