@@ -1,4 +1,4 @@
-import { FC, MouseEvent } from "react";
+import { forwardRef, ForwardedRef, FC, MouseEvent } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
@@ -36,15 +36,20 @@ const Button = styled.button<ButtonProps>`
 
 export type Props = {
   /** onClick callback */
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
-} & IconProps;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+} & Omit<IconProps, "ref">;
 
-export const IconButton: FC<Props> = ({ onClick, ...props }) => (
-  <Button
-    onClick={onClick}
-    size={`${(props.size || 2) * 2}rem`}
-    title={props.name}
-  >
-    <Icon {...props} />
-  </Button>
+export const IconButton: FC<Props> = forwardRef(
+  ({ onClick, ...props }, ref) => (
+    <Button
+      onClick={onClick}
+      size={`${(props.size || 2) * 2}rem`}
+      title={props.name}
+      ref={ref as ForwardedRef<HTMLButtonElement>}
+    >
+      <Icon {...props} />
+    </Button>
+  )
 );
+
+IconButton.displayName = "IconButton";
