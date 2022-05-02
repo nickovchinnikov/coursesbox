@@ -8,13 +8,22 @@ import { Layout } from "@/components/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isDark, setIsDark] = useState(false);
-  const toggleDark = () => setIsDark(!isDark);
+
+  const toggleDark = () => {
+    localStorage.setItem("theme", isDark ? "light" : "dark");
+    setIsDark(!isDark);
+  };
 
   useEffect(() => {
-    setIsDark(window.matchMedia("prefers-color-scheme: dark").matches);
+    const isDark = Boolean(localStorage.getItem("theme") === "dark");
+
+    setIsDark(
+      window.matchMedia("prefers-color-scheme: dark").matches || isDark
+    );
   }, []);
 
   const theme = Themes[isDark ? "dark" : "light"];
+
   return (
     <ThemeProvider theme={theme}>
       <Layout isDark={isDark} onThemeToggle={toggleDark}>
