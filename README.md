@@ -162,3 +162,9 @@
 ### React hook form, validation and tests
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/32)
+
+### Fix styles, add login button
+
+### Theme toggle flicker fix
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/33)
