@@ -16,11 +16,7 @@ describe("Layout test cases", () => {
   );
 
   it("Render check", () => {
-    const { asFragment } = render(
-      <Layout isDark onThemeToggle={() => undefined}>
-        {child}
-      </Layout>
-    );
+    const { asFragment } = render(<Layout>{child}</Layout>);
 
     expect(asFragment()).toMatchSnapshot();
   });
