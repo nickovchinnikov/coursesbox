@@ -148,3 +148,11 @@
 ### Strapi init
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/30)
+
+### User, roles and auth flow
+
+### Login page part 1
+
+### Login page part 2
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/31)

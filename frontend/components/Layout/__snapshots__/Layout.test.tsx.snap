@@ -6,7 +6,7 @@ exports[`Layout test cases Render check 1`] = `
     class="css-u0jlnf"
   >
     <a
-      class="css-vbvevl"
+      class="css-4w3zwj"
       href="/"
     >
       <header
@@ -29,13 +29,13 @@ exports[`Layout test cases Render check 1`] = `
       class="css-1sstk05"
     >
       <a
-        class="css-19yrd4a"
+        class="css-1sdexyg"
         href="/all"
       >
         All
       </a>
       <a
-        class="css-19yrd4a"
+        class="css-1sdexyg"
         href="/news"
       >
         News
@@ -64,12 +64,15 @@ exports[`Layout test cases Render check 1`] = `
       </button>
     </nav>
     <label
-      class="css-1w3lqlr"
+      class="css-fabfz"
       height="7"
       width="20"
     >
+      <span
+        class="css-1grri41"
+      />
       <div
-        class="css-1v67xy3"
+        class="css-52ovgc"
       >
         <input
           class="css-1bj11r8"
@@ -92,6 +95,9 @@ exports[`Layout test cases Render check 1`] = `
           />
         </svg>
       </div>
+      <span
+        class="css-1reg724"
+      />
     </label>
     <main
       class="css-1qc1fvq"

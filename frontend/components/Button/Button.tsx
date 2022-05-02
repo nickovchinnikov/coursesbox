@@ -13,7 +13,7 @@ export type Props = {
   /** Button color */
   color?: Color;
   /** Click handler */
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 };
 
 export const getColors = (theme: AppTheme, color?: Color): SerializedStyles => {

@@ -45,3 +45,12 @@ export const BasicTile: ComponentStoryObj<typeof Tile> = {
     culpa qui officia deserunt mollit anim id est laborum.`,
   },
 };
+
+export const BasicTileWithSmallAmountOfContent: ComponentStoryObj<typeof Tile> =
+  {
+    ...BasicTile,
+    args: {
+      header: "Lorem ipsum dolor sit amet",
+      children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    },
+  };
