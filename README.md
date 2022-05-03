@@ -139,7 +139,7 @@
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/28)
 
 
-## Strapi review
+## Login and Registration
 
 ### Intro and refactoring
 
@@ -172,3 +172,7 @@
 ### Registration page
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/34)
+
+### User Page and review
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/35)
