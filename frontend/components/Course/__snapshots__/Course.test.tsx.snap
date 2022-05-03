@@ -26,7 +26,7 @@ exports[`Course test cases Course render check 1`] = `
           />
         </span>
         <img
-          alt="Logo for Hands-On React"
+          alt="Hands-On React. Build advanced React JS Frontend with expert"
           data-nimg="intrinsic"
           decoding="async"
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
