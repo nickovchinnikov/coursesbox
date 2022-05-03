@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Registration page Client validation check 1`] = `
+<span
+  class="css-1reg724"
+  role="alert"
+>
+   
+</span>
+`;
+
+exports[`Registration page Client validation check 2`] = `
+<span
+  class="css-1reg724"
+  role="alert"
+>
+   
+</span>
+`;
+
+exports[`Registration page Client validation check 3`] = `
+<span
+  class="css-1reg724"
+  role="alert"
+>
+   
+</span>
+`;
+
+exports[`Registration page Render check 1`] = `
+<div>
+  <form>
+    <div
+      class="css-qbqlvy"
+    >
+      <section
+        class="css-6q0t2w"
+      >
+        <h2>
+          Create an account
+        </h2>
+        <label
+          class="css-58qgct"
+          height="7"
+          width="20"
+        >
+          <span
+            class="css-1grri41"
+          >
+            username
+          </span>
+          <div
+            class="css-52ovgc"
+          >
+            <input
+              class="css-1bj11r8"
+              name="username"
+              placeholder="username"
+            />
+          </div>
+          <span
+            class="css-1reg724"
+            role="alert"
+          >
+             
+          </span>
+        </label>
+        <label
+          class="css-58qgct"
+          height="7"
+          width="20"
+        >
+          <span
+            class="css-1grri41"
+          >
+            email
+          </span>
+          <div
+            class="css-52ovgc"
+          >
+            <input
+              class="css-1bj11r8"
+              name="email"
+              placeholder="email"
+              type="email"
+            />
+          </div>
+          <span
+            class="css-1reg724"
+            role="alert"
+          >
+             
+          </span>
+        </label>
+        <label
+          class="css-58qgct"
+          height="7"
+          width="20"
+        >
+          <span
+            class="css-1grri41"
+          >
+            password
+          </span>
+          <div
+            class="css-52ovgc"
+          >
+            <input
+              class="css-1bj11r8"
+              name="password"
+              placeholder="password"
+              role="textbox"
+              type="password"
+            />
+          </div>
+          <span
+            class="css-1reg724"
+            role="alert"
+          >
+             
+          </span>
+        </label>
+        <button
+          class="css-1rttvxo"
+          color="primary"
+          type="submit"
+        >
+          Sign Up
+        </button>
+        <h3>
+          <a
+            class="css-pm0vza"
+            href="/login"
+          >
+            Login
+          </a>
+        </h3>
+      </section>
+    </div>
+  </form>
+</div>
+`;
