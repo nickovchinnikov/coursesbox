@@ -5,18 +5,18 @@ import { GlobalStyles } from "@/styles/global";
 
 export default function Document() {
   const setInitialTheme = `
-    var isDarkInStorage = Boolean(localStorage.getItem("theme") === "dark");
+    var theme = localStorage.getItem("theme");
+    var themeExistsInStorage = Boolean(theme !== null);
 
-    var isDark =
-      window.matchMedia("prefers-color-scheme: dark").matches || isDarkInStorage;
+    var isDark = themeExistsInStorage ?
+      Boolean(theme === "dark") :
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    if (isDark) {
-      document.documentElement.style.setProperty("--themeBackgroundColor", "#5e5c64");
-      document.documentElement.style.setProperty("--themeColor", "#E4EBF5e6");
-    } else {
-      document.documentElement.style.setProperty("--themeBackgroundColor", "#e4ebf5");
-      document.documentElement.style.setProperty("--themeColor", "#504e55e6");
-    }
+    var backgroundColor = isDark ? "#5e5c64" : "#e4ebf5";
+    var textColor = isDark ? "#E4EBF5e6" : "#504e55e6";
+
+    document.documentElement.style.setProperty("--themeBackgroundColor", backgroundColor);
+    document.documentElement.style.setProperty("--themeColor", textColor);
   `;
   return (
     <Html>

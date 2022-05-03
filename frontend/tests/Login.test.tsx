@@ -54,6 +54,7 @@ describe("Login page", () => {
 
     const alerts = screen.getAllByRole("alert");
 
+    expect(alerts).toHaveLength(2);
     expect(alerts[0]).toMatchSnapshot();
     expect(alerts[1]).toMatchSnapshot();
   });
