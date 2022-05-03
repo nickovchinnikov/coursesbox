@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type UserState = {
   jwt: string;
@@ -6,7 +6,7 @@ export type UserState = {
   email: string;
 };
 
-const initialState: UserState = {
+export const initialState: UserState = {
   jwt: "",
   username: "",
   email: "",
@@ -15,5 +15,13 @@ const initialState: UserState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {},
+  reducers: {
+    update: (state, { payload }: PayloadAction<Partial<UserState>>) => ({
+      ...state,
+      ...payload,
+    }),
+    clear: () => initialState,
+  },
 });
+
+export const { actions, reducer } = userSlice;
