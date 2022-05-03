@@ -168,3 +168,7 @@
 ### Theme toggle flicker fix
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/33)
+
+### Registration page
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/34)
