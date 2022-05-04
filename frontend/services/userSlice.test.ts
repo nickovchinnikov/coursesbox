@@ -1,8 +1,14 @@
-import { storeCreator } from "@/store";
+import { storeCreator as globalStoreCreator } from "@/store";
 
 import { mockUser, ValidationError } from "@/mocks/user";
 
-import { reducer, actions, initialState, login } from "./userSlice";
+import { reducer, initialState, login, logout } from "./userSlice";
+
+const rootReducer = {
+  user: reducer,
+};
+
+const storeCreator = () => globalStoreCreator(rootReducer);
 
 const updatedState = {
   jwt: mockUser.jwt,
@@ -14,8 +20,6 @@ const loginData = {
   identifier: mockUser.user.email,
   password: mockUser.user.password,
 };
-
-const requestId = "someid";
 
 describe("User slice check", () => {
   describe("Login async flow", () => {
@@ -73,6 +77,43 @@ describe("User slice check", () => {
           requestState: "fulfilled",
         },
       });
+    });
+  });
+
+  describe("Logout flow", () => {
+    beforeEach(() => {
+      localStorage.clear();
+    });
+    it("logout action", async () => {
+      // Login
+      const store = storeCreator();
+      await store.dispatch(login(loginData));
+      const stateAfterLogin = store.getState();
+      expect(stateAfterLogin).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(mockUser.jwt);
+      expect(localStorage.getItem("username")).toBe(mockUser.user.username);
+      expect(localStorage.getItem("email")).toBe(mockUser.user.email);
+
+      // Logout
+      await store.dispatch(logout());
+
+      const stateAfterLogout = store.getState();
+      expect(stateAfterLogout).toEqual({
+        user: {
+          ...initialState,
+        },
+      });
+      // Check that the data is removed from localStorage
+      expect(localStorage.getItem("jwt")).toBe(null);
+      expect(localStorage.getItem("username")).toBe(null);
+      expect(localStorage.getItem("email")).toBe(null);
     });
   });
 });
