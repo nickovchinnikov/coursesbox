@@ -5,6 +5,8 @@
 // Learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom/extend-expect";
 
+import "whatwg-fetch";
+
 import { server } from "./mocks/server";
 
 Object.defineProperty(window, "matchMedia", {
