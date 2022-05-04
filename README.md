@@ -205,4 +205,6 @@
 
 ### React-redux and user flow part 1
 
+### React-redux in Jest and Storybook
+
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/41)
