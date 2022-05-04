@@ -20,6 +20,12 @@ export type LoginData = {
   password?: string;
 };
 
+export type RegistrationData = {
+  username: string;
+  email: string;
+  password: string;
+};
+
 type UserPayload = { jwt: string; user: { username: string; email: string } };
 
 export const initialState: UserState = {
@@ -31,31 +37,37 @@ export const initialState: UserState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    update: (state, { payload }: PayloadAction<Partial<UserState>>) => ({
-      ...state,
-      ...payload,
-    }),
-    clear: () => initialState,
-  },
+  reducers: {},
   extraReducers: (builder) => {
+    // Logout flow
+    builder.addCase(logout.fulfilled, () => initialState);
+
+    /** Login/registration flow */
     builder
-      .addCase(login.fulfilled, (state, { payload }) => {
-        state.requestState = "fulfilled";
-        state.jwt = payload.jwt;
-        state.username = payload.user.username;
-        state.email = payload.user.email;
-        state.error = undefined;
-      })
-      .addCase(login.pending, (state) => {
-        state.requestState = "pending";
-        state.error = undefined;
-      })
-      .addCase(login.rejected, (state, { payload }) => {
-        state.requestState = "rejected";
-        const payloadError = (payload as { error: SerializedError })?.error;
-        state.error = payloadError;
-      });
+      .addMatcher<PayloadAction<UserPayload>>(
+        (action) => /\/(login|registration)\/fulfilled$/.test(action.type),
+        (state, { payload }) => {
+          state.requestState = "fulfilled";
+          state.jwt = payload.jwt;
+          state.username = payload.user.username;
+          state.email = payload.user.email;
+          state.error = undefined;
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/pending"),
+        (state) => {
+          state.requestState = "pending";
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state, { payload }) => {
+          const payloadError = (payload as { error: SerializedError })?.error;
+          state.error = payloadError;
+          state.requestState = "rejected";
+        }
+      );
   },
 });
 
@@ -108,6 +120,37 @@ export const login = createAsyncThunk<UserPayload, LoginData>(
       return result;
     } catch (error) {
       clearUserInfoFromLocalStorage();
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const logout = createAsyncThunk("user/logout", async () =>
+  clearUserInfoFromLocalStorage()
+);
+
+export const registration = createAsyncThunk<UserPayload, RegistrationData>(
+  "user/registration",
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await fetch(`${api_url}/auth/local/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+
+      if (response.status < 200 || response.status >= 300) {
+        return rejectWithValue(result);
+      }
+
+      setupUserInfoToLocalStorage(result);
+
+      return result;
+    } catch (error) {
       return rejectWithValue(error);
     }
   }
