@@ -199,8 +199,10 @@
 
 ### Integration tests and msw
 
+### Login / Registration flow
+
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/40)
 
-### Login / Registration flow
+### React-redux and user flow part 1
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/41)
