@@ -5,6 +5,8 @@ import {
   SerializedError,
 } from "@reduxjs/toolkit";
 
+import { RootState } from "@/store";
+
 type RequestState = "pending" | "fulfilled" | "rejected";
 
 export type UserState = {
@@ -72,6 +74,8 @@ export const userSlice = createSlice({
 });
 
 export const { actions, reducer } = userSlice;
+
+export const selectUser = ({ user }: RootState) => user;
 
 const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
