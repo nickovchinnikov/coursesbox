@@ -12,3 +12,12 @@ export const mockUser = {
     updatedAt: "2022-04-20T12:58:41.661Z",
   },
 };
+
+export const ValidationError = {
+  error: {
+    status: 400,
+    name: "ValidationError",
+    message: "Invalid identifier or password",
+    details: {},
+  },
+};

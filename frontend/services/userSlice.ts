@@ -31,13 +31,7 @@ export const initialState: UserState = {
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    update: (state, { payload }: PayloadAction<Partial<UserState>>) => ({
-      ...state,
-      ...payload,
-    }),
-    clear: () => initialState,
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, { payload }) => {
