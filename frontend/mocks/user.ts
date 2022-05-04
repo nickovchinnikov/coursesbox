@@ -23,7 +23,6 @@ export const ValidationError = {
 };
 
 export const RegistrationError = {
-  data: null,
   error: {
     status: 400,
     name: "ApplicationError",

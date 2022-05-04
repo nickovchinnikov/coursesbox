@@ -1,8 +1,14 @@
 import { storeCreator as globalStoreCreator } from "@/store";
 
-import { mockUser, ValidationError } from "@/mocks/user";
+import { mockUser, ValidationError, RegistrationError } from "@/mocks/user";
 
-import { reducer, initialState, login, logout } from "./userSlice";
+import {
+  reducer,
+  initialState,
+  login,
+  logout,
+  registration,
+} from "./userSlice";
 
 const rootReducer = {
   user: reducer,
@@ -18,6 +24,12 @@ const updatedState = {
 
 const loginData = {
   identifier: mockUser.user.email,
+  password: mockUser.user.password,
+};
+
+const registrationData = {
+  username: mockUser.user.username,
+  email: mockUser.user.email,
   password: mockUser.user.password,
 };
 
@@ -114,6 +126,46 @@ describe("User slice check", () => {
       expect(localStorage.getItem("jwt")).toBe(null);
       expect(localStorage.getItem("username")).toBe(null);
       expect(localStorage.getItem("email")).toBe(null);
+    });
+  });
+
+  describe("Registration state flow", () => {
+    it("fail registration flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(
+        registration({ email: "test", username: "test", password: "wrong" })
+      );
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          jwt: "",
+          username: "",
+          email: "",
+          ...RegistrationError,
+          requestState: "rejected",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(null);
+      expect(localStorage.getItem("username")).toBe(null);
+      expect(localStorage.getItem("email")).toBe(null);
+    });
+    it("success registration flow", async () => {
+      const store = storeCreator();
+      await store.dispatch(registration(registrationData));
+      const state = store.getState();
+
+      expect(state).toEqual({
+        user: {
+          ...updatedState,
+          requestState: "fulfilled",
+        },
+      });
+      // Check that the data is stored in localStorage
+      expect(localStorage.getItem("jwt")).toBe(mockUser.jwt);
+      expect(localStorage.getItem("username")).toBe(mockUser.user.username);
+      expect(localStorage.getItem("email")).toBe(mockUser.user.email);
     });
   });
 });
