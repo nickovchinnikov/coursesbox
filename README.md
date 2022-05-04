@@ -196,3 +196,7 @@
 ### Async actions tests
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/39)
+
+### Integration tests and msw
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/40)
