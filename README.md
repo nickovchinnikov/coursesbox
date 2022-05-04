@@ -200,3 +200,7 @@
 ### Integration tests and msw
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/40)
+
+### Login / Registration flow
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/41)
