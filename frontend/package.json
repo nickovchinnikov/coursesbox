@@ -19,7 +19,8 @@
     "next": "12.1.6",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-hook-form": "^7.30.0"
+    "react-hook-form": "^7.30.0",
+    "react-redux": "^8.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",

@@ -6,12 +6,9 @@ export const rootReducer = {
   user: userSlice.reducer,
 };
 
-export const storeCreator = (reducer = rootReducer) =>
-  configureStore({
-    reducer,
-  });
-
-export const store = storeCreator();
+export const store = configureStore({
+  reducer: rootReducer,
+});
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
