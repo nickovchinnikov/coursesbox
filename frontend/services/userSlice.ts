@@ -18,8 +18,8 @@ export type UserState = {
 };
 
 export type LoginData = {
-  identifier?: string;
-  password?: string;
+  identifier: string;
+  password: string;
 };
 
 export type RegistrationData = {
@@ -91,25 +91,36 @@ const setupUserInfoToLocalStorage = (result: UserPayload) => {
   localStorage.setItem("email", result?.user?.email);
 };
 
-export const login = createAsyncThunk<UserPayload, LoginData>(
+const createRequest = (
+  jwt: string | null,
+  loginData: LoginData | undefined
+) => {
+  if (jwt && !loginData) {
+    return fetch(`${api_url}/users/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    });
+  }
+  if (loginData) {
+    return fetch(`${api_url}/auth/local`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    });
+  }
+  throw { error: "Invalid login request" };
+};
+
+export const login = createAsyncThunk<UserPayload, LoginData | undefined>(
   "user/login",
   async (loginData, { rejectWithValue }) => {
     try {
       const jwt = localStorage.getItem("jwt");
-      const response = jwt
-        ? await fetch(`${api_url}/users/me`, {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          })
-        : await fetch(`${api_url}/auth/local`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(loginData),
-          });
+      const response = await createRequest(jwt, loginData);
 
       const data = await response.json();
 
