@@ -190,3 +190,9 @@
 ### User slice
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/38)
+
+### Async actions
+
+### Async actions tests
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/39)
