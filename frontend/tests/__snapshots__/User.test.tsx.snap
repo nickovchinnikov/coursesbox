@@ -1,0 +1,307 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User page Load user 1`] = `
+<div>
+  <div
+    class="css-u0jlnf"
+  >
+    <a
+      class="css-4w3zwj"
+      href="/"
+    >
+      <header
+        class="css-rq0vky"
+        size="3"
+      >
+        <span
+          class="logo_short"
+        >
+          C8X
+        </span>
+        <span
+          class="logo_full"
+        >
+          CoursesBox
+        </span>
+      </header>
+    </a>
+    <nav
+      class="css-1sstk05"
+    >
+      <a
+        class="css-1sdexyg"
+        href="/all"
+      >
+        All
+      </a>
+      <button
+        class="css-15xqhy1"
+        title="User"
+      >
+        <svg
+          aria-label="User"
+          class="css-z3g3v6"
+          fill="currentColor"
+          height="1rem"
+          href="/user"
+          role="img"
+          viewBox="0 0 1024 1024"
+          width="1rem"
+        >
+          <path
+            d="M858.5 763.6a374 374 0 00-80.6-119.5 375.63 375.63 0 00-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 00-80.6 119.5A371.7 371.7 0 00136 901.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 008-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+          />
+        </svg>
+      </button>
+      <button
+        class="css-15xqhy1"
+        title="Moon"
+      >
+        <svg
+          aria-label="Moon"
+          class="css-z3g3v6"
+          fill="currentColor"
+          height="1rem"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1rem"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M10 6a8 8 0 0011.955 6.956C21.474 18.03 17.2 22 12 22 6.477 22 2 17.523 2 12c0-5.2 3.97-9.474 9.044-9.955A7.963 7.963 0 0010 6zm-6 6a8 8 0 008 8 8.006 8.006 0 006.957-4.045c-.316.03-.636.045-.957.045-5.523 0-10-4.477-10-10 0-.321.015-.64.045-.957A8.006 8.006 0 004 12zm14.164-9.709L19 2.5v1l-.836.209a2 2 0 00-1.455 1.455L16.5 6h-1l-.209-.836a2 2 0 00-1.455-1.455L13 3.5v-1l.836-.209A2 2 0 0015.29.836L15.5 0h1l.209.836a2 2 0 001.455 1.455zm5 5L24 7.5v1l-.836.209a2 2 0 00-1.455 1.455L21.5 11h-1l-.209-.836a2 2 0 00-1.455-1.455L18 8.5v-1l.836-.209a2 2 0 001.455-1.455L20.5 5h1l.209.836a2 2 0 001.455 1.455z"
+          />
+        </svg>
+      </button>
+    </nav>
+    <label
+      class="css-fabfz"
+      height="7"
+      width="20"
+    >
+      <span
+        class="css-1grri41"
+      />
+      <div
+        class="css-52ovgc"
+      >
+        <input
+          class="css-1bj11r8"
+          placeholder="Search"
+        />
+        <svg
+          aria-hidden="true"
+          aria-label="Search"
+          class="css-mjc9ur"
+          data-icon="search"
+          fill="currentColor"
+          focusable="false"
+          height="2rem"
+          role="img"
+          viewBox="64 64 896 896"
+          width="2rem"
+        >
+          <path
+            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+          />
+        </svg>
+      </div>
+      <span
+        class="css-1reg724"
+        role="alert"
+      />
+    </label>
+    <main
+      class="css-tee3o6"
+    >
+      <div
+        class="css-qbqlvy"
+      >
+        <section
+          class="css-6q0t2w"
+        >
+          <h2>
+            Profile
+          </h2>
+          <h3>
+            username: 
+            John Doe
+          </h3>
+          <h3>
+            email: 
+            john@doe.com
+          </h3>
+          <button
+            class="css-1rttvxo"
+            color="primary"
+          >
+            Logout
+          </button>
+        </section>
+      </div>
+    </main>
+    <footer
+      class="css-1y0dtms"
+    >
+      © 
+      2022
+       NickOvchinnikov. All rights reserved.
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`User page Render check 1`] = `
+<div>
+  <div
+    class="css-u0jlnf"
+  >
+    <a
+      class="css-4w3zwj"
+      href="/"
+    >
+      <header
+        class="css-rq0vky"
+        size="3"
+      >
+        <span
+          class="logo_short"
+        >
+          C8X
+        </span>
+        <span
+          class="logo_full"
+        >
+          CoursesBox
+        </span>
+      </header>
+    </a>
+    <nav
+      class="css-1sstk05"
+    >
+      <a
+        class="css-1sdexyg"
+        href="/all"
+      >
+        All
+      </a>
+      <button
+        class="css-15xqhy1"
+        title="User"
+      >
+        <svg
+          aria-label="User"
+          class="css-z3g3v6"
+          fill="currentColor"
+          height="1rem"
+          href="/user"
+          role="img"
+          viewBox="0 0 1024 1024"
+          width="1rem"
+        >
+          <path
+            d="M858.5 763.6a374 374 0 00-80.6-119.5 375.63 375.63 0 00-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 00-80.6 119.5A371.7 371.7 0 00136 901.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 008-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+          />
+        </svg>
+      </button>
+      <button
+        class="css-15xqhy1"
+        title="Moon"
+      >
+        <svg
+          aria-label="Moon"
+          class="css-z3g3v6"
+          fill="currentColor"
+          height="1rem"
+          role="img"
+          viewBox="0 0 24 24"
+          width="1rem"
+        >
+          <path
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path
+            d="M10 6a8 8 0 0011.955 6.956C21.474 18.03 17.2 22 12 22 6.477 22 2 17.523 2 12c0-5.2 3.97-9.474 9.044-9.955A7.963 7.963 0 0010 6zm-6 6a8 8 0 008 8 8.006 8.006 0 006.957-4.045c-.316.03-.636.045-.957.045-5.523 0-10-4.477-10-10 0-.321.015-.64.045-.957A8.006 8.006 0 004 12zm14.164-9.709L19 2.5v1l-.836.209a2 2 0 00-1.455 1.455L16.5 6h-1l-.209-.836a2 2 0 00-1.455-1.455L13 3.5v-1l.836-.209A2 2 0 0015.29.836L15.5 0h1l.209.836a2 2 0 001.455 1.455zm5 5L24 7.5v1l-.836.209a2 2 0 00-1.455 1.455L21.5 11h-1l-.209-.836a2 2 0 00-1.455-1.455L18 8.5v-1l.836-.209a2 2 0 001.455-1.455L20.5 5h1l.209.836a2 2 0 001.455 1.455z"
+          />
+        </svg>
+      </button>
+    </nav>
+    <label
+      class="css-fabfz"
+      height="7"
+      width="20"
+    >
+      <span
+        class="css-1grri41"
+      />
+      <div
+        class="css-52ovgc"
+      >
+        <input
+          class="css-1bj11r8"
+          placeholder="Search"
+        />
+        <svg
+          aria-hidden="true"
+          aria-label="Search"
+          class="css-mjc9ur"
+          data-icon="search"
+          fill="currentColor"
+          focusable="false"
+          height="2rem"
+          role="img"
+          viewBox="64 64 896 896"
+          width="2rem"
+        >
+          <path
+            d="M909.6 854.5L649.9 594.8C690.2 542.7 712 479 712 412c0-80.2-31.3-155.4-87.9-212.1-56.6-56.7-132-87.9-212.1-87.9s-155.5 31.3-212.1 87.9C143.2 256.5 112 331.8 112 412c0 80.1 31.3 155.5 87.9 212.1C256.5 680.8 331.8 712 412 712c67 0 130.6-21.8 182.7-62l259.7 259.6a8.2 8.2 0 0011.6 0l43.6-43.5a8.2 8.2 0 000-11.6zM570.4 570.4C528 612.7 471.8 636 412 636s-116-23.3-158.4-65.6C211.3 528 188 471.8 188 412s23.3-116.1 65.6-158.4C296 211.3 352.2 188 412 188s116.1 23.2 158.4 65.6S636 352.2 636 412s-23.3 116.1-65.6 158.4z"
+          />
+        </svg>
+      </div>
+      <span
+        class="css-1reg724"
+        role="alert"
+      />
+    </label>
+    <main
+      class="css-tee3o6"
+    >
+      <div
+        class="css-qbqlvy"
+      >
+        <section
+          class="css-6q0t2w"
+        >
+          <h2>
+            Profile
+          </h2>
+          <h3>
+            username: 
+            John Doe
+          </h3>
+          <h3>
+            email: 
+            john@doe.com
+          </h3>
+          <button
+            class="css-1rttvxo"
+            color="primary"
+          >
+            Logout
+          </button>
+        </section>
+      </div>
+    </main>
+    <footer
+      class="css-1y0dtms"
+    >
+      © 
+      2022
+       NickOvchinnikov. All rights reserved.
+    </footer>
+  </div>
+</div>
+`;

@@ -1,7 +1,15 @@
-import { render, screen, act } from "@/test-utils";
+import { render, screen, act, waitFor } from "@/test-utils";
 import userEvent from "@testing-library/user-event";
+import { useRouter } from "next/router";
+
+import { mockUser } from "@/mocks/user";
 
 import Registration from "@/pages/registration";
+
+jest.mock("next/router", () => ({
+  ...jest.requireActual("next/router"),
+  useRouter: jest.fn(),
+}));
 
 describe("Registration page", () => {
   it("Render check", () => {
@@ -71,5 +79,59 @@ describe("Registration page", () => {
     expect(alerts[0]).toMatchSnapshot();
     expect(alerts[1]).toMatchSnapshot();
     expect(alerts[2]).toMatchSnapshot();
+  });
+
+  it("Server validation error check", async () => {
+    render(<Registration />);
+
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+
+    act(() => {
+      userEvent.type(
+        screen.getByRole("textbox", { name: "username" }),
+        "testtest"
+      );
+      userEvent.type(
+        screen.getByRole("textbox", { name: "email" }),
+        "test@test.test"
+      );
+      userEvent.type(
+        screen.getByRole("textbox", { name: "password" }),
+        "testtest!"
+      );
+      userEvent.click(submitButton);
+    });
+
+    expect(
+      await screen.findByText("An error occurred during account creation")
+    ).toBeInTheDocument();
+  });
+  it("Successful registration check", async () => {
+    // Mock the router
+    const push = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({ push });
+
+    render(<Registration />);
+
+    const submitButton = screen.getByRole("button", { name: "Sign Up" });
+
+    act(() => {
+      userEvent.type(
+        screen.getByRole("textbox", { name: "username" }),
+        mockUser.user.username
+      );
+      userEvent.type(
+        screen.getByRole("textbox", { name: "email" }),
+        mockUser.user.email
+      );
+      userEvent.type(
+        screen.getByRole("textbox", { name: "password" }),
+        mockUser.user.password
+      );
+      userEvent.click(submitButton);
+    });
+
+    // Check if the user is redirected to the user page
+    await waitFor(() => expect(push).toHaveBeenCalledWith("/user"));
   });
 });
