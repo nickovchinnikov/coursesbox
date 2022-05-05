@@ -76,7 +76,7 @@ describe("User slice check", () => {
 
       const store = storeCreator();
       // In this case the jwt is already saved in localStorage
-      await store.dispatch(login({}));
+      await store.dispatch(login());
       const state = store.getState();
 
       expect(state).toEqual({
