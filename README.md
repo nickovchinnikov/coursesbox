@@ -212,3 +212,7 @@
 ### Full login flow and registration
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/42)
+
+### Add page test cases
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/43)
