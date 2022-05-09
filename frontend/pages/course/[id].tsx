@@ -1,11 +1,19 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import styled from "@emotion/styled";
 import MarkdownIt from "markdown-it";
 
 import { Course as CourseType, Response } from "@/types";
 
-import { Tile } from "@/components/Tile";
+import { Tile, CenteredTile } from "@/components/Tile";
+
+const ImageContainer = styled.div<{ maxWidth: string; maxHeight: string }>`
+  position: relative;
+  width: 100%;
+  max-width: ${({ maxWidth }) => maxWidth};
+  height: 30vw;
+`;
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
@@ -100,26 +108,29 @@ const CoursePage: NextPage<{
       },
     },
   },
-}) => {
-  return (
-    <>
-      <Head>
-        <title>CoursesBox</title>
-        <meta name="description" content={header} />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Tile header={header}>
+}) => (
+  <>
+    <Head>
+      <title>CoursesBox</title>
+      <meta name="description" content={header} />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <CenteredTile header={header}>
+      <ImageContainer maxWidth={`${width}px`} maxHeight={`${height}px`}>
         <Image
+          layout="fill"
           alt={`Cover for ${header}`}
           src={`http://localhost:1337${url}`}
-          width={width}
-          height={height}
+          objectFit="contain"
         />
-        <div dangerouslySetInnerHTML={{ __html: description }} />
-        <h4>{new Date(publishedAt).toDateString()}</h4>
-      </Tile>
-    </>
-  );
-};
+      </ImageContainer>
+      <div
+        style={{ maxWidth: width }}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+      <h4>{new Date(publishedAt).toDateString()}</h4>
+    </CenteredTile>
+  </>
+);
 
 export default CoursePage;
