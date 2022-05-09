@@ -23,6 +23,7 @@ export type Image = Data<
 
 export type Course = Data<{
   header: string;
+  subtitle: string;
   url: string;
   description: string;
   publishedAt: string;

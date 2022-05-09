@@ -13,10 +13,15 @@
   "pluginOptions": {},
   "attributes": {
     "header": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 100,
+      "minLength": 50
     },
     "description": {
-      "type": "richtext"
+      "type": "richtext",
+      "required": true
     },
     "cover": {
       "type": "media",
@@ -28,6 +33,12 @@
         "videos",
         "audios"
       ]
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true,
+      "unique": true,
+      "maxLength": 200
     }
   }
 }
