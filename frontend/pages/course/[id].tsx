@@ -1,20 +1,11 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import styled from "@emotion/styled";
 import MarkdownIt from "markdown-it";
-
-import { Course } from "@/components/Course";
-import { Tile } from "@/components/Tile";
 
 import { Course as CourseType, Response } from "@/types";
 
-const CoursesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2vw;
-  margin: 2vh 1vw;
-`;
+import { Tile } from "@/components/Tile";
 
 type CourseResponce = Response<CourseType>;
 type CoursesResponce = Response<CourseType[]>;
@@ -53,9 +44,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
   const ssr_token = process.env.SSR_TOKEN;
 
-  const cid = context?.params?.cid;
+  const id = context?.params?.id;
 
-  const res = await fetch(`${api_url}/courses/${cid}?populate=*`, {
+  const res = await fetch(`${api_url}/courses/${id}?populate=*`, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${ssr_token}`,
