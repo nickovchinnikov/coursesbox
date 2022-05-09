@@ -1,8 +1,10 @@
-import type { NextPage } from "next";
+import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import styled from "@emotion/styled";
 
 import { Course } from "@/components/Course";
+
+import { Course as CourseType, Response } from "@/types";
 
 const CoursesWrapper = styled.div`
   display: flex;
@@ -11,43 +13,86 @@ const CoursesWrapper = styled.div`
   margin: 2vh 1vw;
 `;
 
-const Home: NextPage = () => {
+type CoursesResponce = Response<CourseType[]>;
+
+export const getStaticProps: GetStaticProps = async () => {
+  const api_url = process.env.NEXT_PUBLIC_STRAPI_API_URL;
+  const ssr_token = process.env.SSR_TOKEN;
+
+  const res = await fetch(`${api_url}/courses?populate=*`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${ssr_token}`,
+    },
+  });
+
+  const { data, meta, error }: CoursesResponce = await res.json();
+
+  const status = error?.status;
+
+  if (status && (status < 200 || status >= 300)) {
+    return {
+      props: {
+        courses: [],
+        meta: {},
+      },
+    };
+  }
+
+  return {
+    props: {
+      courses: data,
+      meta: meta,
+    },
+  };
+};
+
+const Home: NextPage<{
+  courses: CourseType[];
+  meta: CoursesResponce["meta"];
+}> = ({ courses }) => {
   return (
     <>
       <Head>
-        <title>CoursesBox</title>
+        <title>Courses</title>
         <meta name="description" content="IT courses for everyone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <CoursesWrapper>
-        {Array(4)
-          .fill("")
-          .map(() => (
+        {courses.map(
+          ({
+            id,
+            attributes: {
+              header,
+              description,
+              publishedAt,
+              cover: {
+                data: {
+                  attributes: {
+                    formats: {
+                      medium: { url, width, height },
+                    },
+                  },
+                },
+              },
+            },
+          }) => (
             <Course
-              key={Math.random()}
-              header="Hands-On React. Build advanced React JS Frontend with expert"
-              link="/hands-on-reactjs"
+              key={id}
+              header={header}
+              link={`/course/${id}`}
               imageProps={{
-                width: 1368,
-                height: 770,
-                alt: "Logo for Hands-On React",
-                src: "/covers/hands-on_reactjs_cover.png",
+                width,
+                height,
+                alt: `Cover for ${header}`,
+                src: `http://localhost:1337${url}`,
               }}
             >
-              <>
-                React is the most popular library for building frontend web
-                applications. Step-by-step by diving into all the basics,
-                I&apos;ll introduce you to advanced concepts as well. We&apos;ll
-                build the minesweeper application from scratch We&apos;ll build
-                the minesweeper application from scratch:
-                <ul>
-                  <li>setup of the development environment</li>
-                  <li>configuration of the React JS app</li>
-                  <li>basic algorithms of Minesweeper</li>
-                </ul>
-              </>
+              {description}
+              <h4>{publishedAt}</h4>
             </Course>
-          ))}
+          )
+        )}
       </CoursesWrapper>
     </>
   );
