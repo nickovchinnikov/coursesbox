@@ -1,6 +1,7 @@
 import type { NextPage, GetStaticProps } from "next";
 import Head from "next/head";
 import styled from "@emotion/styled";
+import MarkdownIt from "markdown-it";
 
 import { Course } from "@/components/Course";
 
@@ -39,9 +40,17 @@ export const getStaticProps: GetStaticProps = async () => {
     };
   }
 
+  const md = new MarkdownIt();
+
   return {
     props: {
-      courses: data,
+      courses: data.map(({ id, attributes }) => ({
+        id,
+        attributes: {
+          ...attributes,
+          description: md.render(attributes.description),
+        },
+      })),
       meta: meta,
     },
   };
@@ -88,8 +97,8 @@ const Home: NextPage<{
                 src: `http://localhost:1337${url}`,
               }}
             >
-              {description}
-              <h4>{publishedAt}</h4>
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+              <h4>{new Date(publishedAt).toDateString()}</h4>
             </Course>
           )
         )}

@@ -2,6 +2,7 @@ import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import styled from "@emotion/styled";
+import MarkdownIt from "markdown-it";
 
 import { Course } from "@/components/Course";
 import { Tile } from "@/components/Tile";
@@ -72,9 +73,17 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
+  const md = new MarkdownIt();
+
   return {
     props: {
-      course: data,
+      course: {
+        ...data,
+        attributes: {
+          ...data.attributes,
+          description: md.render(data.attributes.description),
+        },
+      },
       meta: meta,
     },
   };
@@ -115,8 +124,8 @@ const CoursePage: NextPage<{
           width={width}
           height={height}
         />
-        <div>{description}</div>
-        <h4>{publishedAt}</h4>
+        <div dangerouslySetInnerHTML={{ __html: description }} />
+        <h4>{new Date(publishedAt).toDateString()}</h4>
       </Tile>
     </>
   );
