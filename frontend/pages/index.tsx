@@ -88,8 +88,10 @@ const Home: NextPage<{
                 src: `http://localhost:1337${url}`,
               }}
             >
-              <div>{subtitle}</div>
-              <h4>{new Date(publishedAt).toDateString()}</h4>
+              <h3>{subtitle}</h3>
+              <time dateTime={publishedAt}>
+                {new Date(publishedAt).toDateString()}
+              </time>
             </Course>
           )
         )}
