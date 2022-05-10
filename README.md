@@ -227,4 +227,6 @@
 
 ### SSG, getStaticProps and index page
 
+### Fix tests and storybook
+
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/45)
