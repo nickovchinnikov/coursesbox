@@ -2,12 +2,12 @@
 
 exports[`Course test cases Course render check 1`] = `
 <DocumentFragment>
-  <section
-    class="css-1d06jht"
+  <a
+    class="css-1sbvujj"
+    href="/hands-on-reactjs"
   >
-    <a
-      class="css-1qm6sqv"
-      href="/hands-on-reactjs"
+    <section
+      class="css-plxdpn"
     >
       <h2>
         Hands-On React. Build advanced React JS Frontend with expert
@@ -46,7 +46,7 @@ exports[`Course test cases Course render check 1`] = `
           basic algorithms of Minesweeper
         </li>
       </ul>
-    </a>
-  </section>
+    </section>
+  </a>
 </DocumentFragment>
 `;
