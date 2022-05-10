@@ -1,5 +1,6 @@
-import { useState, useLayoutEffect, useEffect, FC } from "react";
+import { useState, useLayoutEffect, useEffect, FC, ChangeEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider } from "@emotion/react";
 
@@ -8,7 +9,6 @@ import { Themes } from "@/styles/themes";
 import { login, selectUser } from "@/services/userSlice";
 
 import { IconButton } from "@/components/IconButton";
-import { StyledLink } from "@/components/StyledLink";
 
 import {
   Wrapper,
@@ -24,6 +24,9 @@ const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 export const Layout: FC = ({ children }) => {
+  const router = useRouter();
+  const { q } = router.query;
+  const [query, setQuery] = useState(q || "");
   const { username } = useSelector<RootState, RootState["user"]>(selectUser);
   const [isDark, setIsDark] = useState(true);
   const dispatch = useDispatch<AppDispatch>();
@@ -32,6 +35,27 @@ export const Layout: FC = ({ children }) => {
     localStorage.setItem("theme", isDark ? "light" : "dark");
     setIsDark(!isDark);
   };
+
+  const searchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.currentTarget;
+    setQuery(value);
+    if (value?.length >= 2) {
+      router.push({
+        pathname: "/search",
+        query: { q: value },
+      });
+    }
+    if (!value) {
+      router.push("/");
+    }
+  };
+
+  useEffect(() => {
+    q && setQuery(q);
+    if (query && !q) {
+      setQuery("");
+    }
+  }, [q]);
 
   useIsomorphicLayoutEffect(() => {
     dispatch(login());
@@ -59,9 +83,6 @@ export const Layout: FC = ({ children }) => {
           </LogoLink>
         </Link>
         <MainNav>
-          <Link href="/all" passHref>
-            <StyledLink>All</StyledLink>
-          </Link>
           <Link href={username ? "/user" : "/login"} passHref>
             <IconButton name={username ? "User" : "Login"} size={1} />
           </Link>
@@ -71,7 +92,12 @@ export const Layout: FC = ({ children }) => {
             onClick={toggleDark}
           />
         </MainNav>
-        <SearchInput icon="Search" placeholder="Search" onChange={() => null} />
+        <SearchInput
+          icon="Search"
+          placeholder="Search"
+          onChange={searchChange}
+          value={query}
+        />
         <Content>{children}</Content>
         <Footer>
           © {new Date().getFullYear()} NickOvchinnikov. All rights reserved.
