@@ -216,3 +216,9 @@
 ### Add page test cases
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/43)
+
+## Content with Next and Strapi
+
+### Upgrade Strapi
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/44)
