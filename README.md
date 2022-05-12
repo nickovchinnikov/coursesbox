@@ -222,3 +222,11 @@
 ### Upgrade Strapi
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/44)
+
+### Add courses endpoint with data
+
+### SSG, getStaticProps and index page
+
+### Fix tests and storybook
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/45)
