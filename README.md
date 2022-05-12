@@ -234,3 +234,7 @@
 ### Fix deploy problem
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/45)
+
+### Course page, SSG and getStaticPath
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/46)
