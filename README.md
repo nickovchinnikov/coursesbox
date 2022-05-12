@@ -229,4 +229,8 @@
 
 ### Fix tests and storybook
 
+### Review deploy with docker and AWS
+
+### Fix deploy problem
+
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/45)
