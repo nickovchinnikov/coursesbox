@@ -62,7 +62,7 @@ export const Courses: FC<{ courses: CourseType[]; strapi_url: string }> = ({
   strapi_url,
 }) => (
   <Wrapper>
-    {courses.map(
+    {courses?.map(
       ({
         id,
         attributes: {
