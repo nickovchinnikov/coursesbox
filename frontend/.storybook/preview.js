@@ -1,5 +1,6 @@
 import * as NextImage from "next/image";
 import { ThemeProvider, Global } from "@emotion/react";
+import { RouterContext } from "next/dist/shared/lib/router-context";
 
 import { Themes } from "../styles/themes";
 import { GlobalStyles } from "../styles/global";
@@ -49,5 +50,8 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
+  },
+  nextRouter: {
+    Provider: RouterContext.Provider,
   },
 };
