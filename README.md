@@ -242,3 +242,7 @@
 ### Search input behavior
 
 ### Search courses
+
+### SSR + getServerSideProps
+
+[pull request](https://github.com/nickovchinnikov/coursesbox/pull/47)
