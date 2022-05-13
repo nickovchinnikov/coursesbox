@@ -91,53 +91,57 @@ const strapi_url = process.env.NEXT_PUBLIC_STRAPI_URL;
 const CoursePage: NextPage<{
   course: CourseType;
   meta: CourseResponce["meta"];
-}> = ({
-  course: {
-    attributes: {
-      header,
-      link,
-      description,
-      publishedAt,
-      cover: {
-        data: {
-          attributes: {
-            formats: {
-              large: { url, width },
+}> = ({ course }) => {
+  if (course && course?.attributes) {
+    const {
+      attributes: {
+        header,
+        link,
+        description,
+        publishedAt,
+        cover: {
+          data: {
+            attributes: {
+              formats: {
+                large: { url, width },
+              },
             },
           },
         },
       },
-    },
-  },
-}) => (
-  <>
-    <Head>
-      <title>Course: {header}</title>
-      <meta name="description" content={header} />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <CenteredTile header={header}>
-      <ImageContainer maxWidth={`${width}px`}>
-        <Image
-          layout="fill"
-          alt={`Cover for ${header}`}
-          src={`${strapi_url}${url}`}
-          objectFit="contain"
-        />
-      </ImageContainer>
-      <Link href={link} passHref>
-        <CustomLink>Enroll now!</CustomLink>
-      </Link>
-      <div
-        style={{ maxWidth: width }}
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
-      <Link href={link} passHref>
-        <CustomLink>Enroll now!</CustomLink>
-      </Link>
-      <h4>{new Date(publishedAt).toDateString()}</h4>
-    </CenteredTile>
-  </>
-);
+    } = course;
+    return (
+      <>
+        <Head>
+          <title>Course: {header}</title>
+          <meta name="description" content={header} />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <CenteredTile header={header}>
+          <ImageContainer maxWidth={`${width}px`}>
+            <Image
+              layout="fill"
+              alt={`Cover for ${header}`}
+              src={`${strapi_url}${url}`}
+              objectFit="contain"
+            />
+          </ImageContainer>
+          <Link href={link} passHref>
+            <CustomLink>Enroll now!</CustomLink>
+          </Link>
+          <div
+            style={{ maxWidth: width }}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+          <Link href={link} passHref>
+            <CustomLink>Enroll now!</CustomLink>
+          </Link>
+          <h4>{new Date(publishedAt).toDateString()}</h4>
+        </CenteredTile>
+      </>
+    );
+  }
+  return null;
+};
 
 export default CoursePage;
