@@ -9,7 +9,6 @@ import { Themes } from "@/styles/themes";
 import { login, selectUser } from "@/services/userSlice";
 
 import { IconButton } from "@/components/IconButton";
-import { StyledLink } from "@/components/StyledLink";
 
 import {
   Wrapper,
