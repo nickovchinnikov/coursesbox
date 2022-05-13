@@ -238,3 +238,7 @@
 ### Course page, SSG and getStaticPath
 
 [pull request](https://github.com/nickovchinnikov/coursesbox/pull/46)
+
+### Search input behavior
+
+### Search courses
