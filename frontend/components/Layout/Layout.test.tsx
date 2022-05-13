@@ -3,6 +3,14 @@ import userEvent from "@testing-library/user-event";
 
 import { Layout } from "./Layout";
 
+jest.mock("next/router", () => ({
+  ...jest.requireActual("next/router"),
+  useRouter: jest.fn().mockReturnValue({
+    query: {},
+    push: jest.fn(),
+  }),
+}));
+
 describe("Layout test cases", () => {
   const child = (
     <>
