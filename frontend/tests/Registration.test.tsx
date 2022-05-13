@@ -8,7 +8,10 @@ import Registration from "@/pages/registration";
 
 jest.mock("next/router", () => ({
   ...jest.requireActual("next/router"),
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockReturnValue({
+    query: {},
+    push: jest.fn(),
+  }),
 }));
 
 describe("Registration page", () => {
@@ -109,7 +112,10 @@ describe("Registration page", () => {
   it("Successful registration check", async () => {
     // Mock the router
     const push = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({ push });
+    (useRouter as jest.Mock).mockReturnValue({
+      query: {},
+      push,
+    });
 
     render(<Registration />);
 

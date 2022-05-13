@@ -9,7 +9,10 @@ import Login from "@/pages/login";
 
 jest.mock("next/router", () => ({
   ...jest.requireActual("next/router"),
-  useRouter: jest.fn(),
+  useRouter: jest.fn().mockReturnValue({
+    query: {},
+    push: jest.fn(),
+  }),
 }));
 
 describe("Login page", () => {
@@ -90,7 +93,10 @@ describe("Login page", () => {
   it("Successful login check", async () => {
     // Mock the router
     const push = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({ push });
+    (useRouter as jest.Mock).mockReturnValue({
+      query: {},
+      push,
+    });
 
     render(<Login />);
 

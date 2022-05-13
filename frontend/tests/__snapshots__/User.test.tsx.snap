@@ -28,12 +28,6 @@ exports[`User page Load user 1`] = `
     <nav
       class="css-1sstk05"
     >
-      <a
-        class="css-1sdexyg"
-        href="/all"
-      >
-        All
-      </a>
       <button
         class="css-15xqhy1"
         title="User"
@@ -90,6 +84,7 @@ exports[`User page Load user 1`] = `
         <input
           class="css-1bj11r8"
           placeholder="Search"
+          value=""
         />
         <svg
           aria-hidden="true"
@@ -181,12 +176,6 @@ exports[`User page Render check 1`] = `
     <nav
       class="css-1sstk05"
     >
-      <a
-        class="css-1sdexyg"
-        href="/all"
-      >
-        All
-      </a>
       <button
         class="css-15xqhy1"
         title="User"
@@ -243,6 +232,7 @@ exports[`User page Render check 1`] = `
         <input
           class="css-1bj11r8"
           placeholder="Search"
+          value=""
         />
         <svg
           aria-hidden="true"
