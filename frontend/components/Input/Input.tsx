@@ -2,7 +2,7 @@ import {
   FC,
   ChangeEventHandler,
   InputHTMLAttributes,
-  ReactChild,
+  ReactElement,
   forwardRef,
   ForwardedRef,
 } from "react";
@@ -104,7 +104,7 @@ export type Props = {
   /** Icon */
   icon?: AvailableIcons;
   /** Feedback for input */
-  feedback?: ReactChild;
+  feedback?: ReactElement | string;
 } & WrapperProps;
 
 export const Input: FC<Props & InputHTMLAttributes<HTMLInputElement>> =
