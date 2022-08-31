@@ -23,7 +23,7 @@ const dark = {
     invalid: "#FFCCD0",
     logo: "#ff9933",
     logoShadow1: "#fed028",
-    logoShadow2: "#e93020",
+    logoShadow2: "#880f22",
   },
 };
 
